@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Create Performance</h2>
+
+<form action="/Performance/Create" method="POST">
+    <div>
+        <label>Performance Id:</label>
+        <input type="number" name="PerformanceId" />
+    </div>
+    <div>
+        <label>Routine Name:</label>
+        <input type="text" name="RoutineName" />
+    </div>
+    <div>
+        <label>Performance Time:</label>
+        <input type="datetime" name="PerformanceTime" />
+    </div>
+    <div>
+        <label>Studio:</label>
+        <input type="text" name="Studio" />
+    </div>
+    <div>
+        <label>Category (Id):</label>
+        <input type="number" name="CategoryId" />
+    </div>
+    <div>
+        <input type="submit" value="Add Performance" />
+    </div>
+</form>

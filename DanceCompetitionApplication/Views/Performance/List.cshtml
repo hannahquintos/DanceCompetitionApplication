@@ -1,0 +1,29 @@
+﻿@model IEnumerable<DanceCompetitionApplication.Models.PerformanceDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Performances</h2>
+
+<table>
+    <tr>
+        <th>Time</th>
+        <th>Entry #</th>
+        <th>Routine</th>
+        <th>Studio</th>
+        <th>Category</th>
+    </tr>
+
+    @foreach (DanceCompetitionApplication.Models.PerformanceDto Performance in Model)
+    {
+        <tr>
+            <td>@Performance.PerformanceTime</td>
+            <td>@Performance.PerformanceId</td>
+            <td>@Performance.RoutineName</td>
+            <td>@Performance.Studio</td>
+            <td>@Performance.CategoryName</td>
+        </tr>
+    }
+
+</table>
