@@ -291,6 +291,7 @@
     <Content Include="Views\Performance\Details.cshtml" />
     <Content Include="Views\Performance\New.cshtml" />
     <Content Include="Views\Performance\Error.cshtml" />
+    <Content Include="Views\Performance\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

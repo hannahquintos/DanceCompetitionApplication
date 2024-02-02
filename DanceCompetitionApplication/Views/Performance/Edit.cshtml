@@ -1,0 +1,31 @@
+﻿@model DanceCompetitionApplication.Models.PerformanceDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Performance</h2>
+
+<form action="/Performance/Update/@Model.PerformanceId" method="POST">
+    <!-- hidden input to send PerformanceId as part of POST information -->
+    <input type="text" style="display:none;" name="PerformanceId" value="@Model.PerformanceId" />
+    <div>
+        <label>Routine Name:</label>
+        <input type="text" name="RoutineName" value="@Model.RoutineName"/>
+    </div>
+    <div>
+        <label>Performance Time:</label>
+        <input type="datetime" name="PerformanceTime" value="@Model.PerformanceTime"/>
+    </div>
+    <div>
+        <label>Studio:</label>
+        <input type="text" name="Studio" value="@Model.Studio"/>
+    </div>
+    <div>
+        <label>Category (Id):</label>
+        <input type="number" name="CategoryId" value="@Model.CategoryId"/>
+    </div>
+    <div>
+        <input type="submit" value="Update" />
+    </div>
+</form>
