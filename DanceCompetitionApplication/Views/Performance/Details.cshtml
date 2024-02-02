@@ -4,6 +4,20 @@
     ViewBag.Title = "Details";
 }
 
-<p>Entry #@Model.PerformanceId</p>
-<h2>@Model.RoutineName</h2>
-<p><span>@Model.PerformanceTime</span> @Model.CategoryName</p>
+
+<a class="backLink" href="/Performance/List">< Back to Performances</a>
+
+<div class="detailsContainer">
+    <p class="detailsInfo">Entry #@Model.PerformanceId</p>
+    <h2 class="detailsInfo">@Model.RoutineName</h2>
+    <p class="detailsInfo"><span class="timeBold">@Model.PerformanceTime</span> @Model.CategoryName</p>
+</div>
+
+<div class="actionBtns">
+    <div class="updateBtn">
+        <a href="/Performance/Edit/@Model.PerformanceId">Update</a>
+    </div>
+    <div class="deleteBtn">
+        <a href="/Performance/DeleteConfirm/@Model.PerformanceId">Delete</a>
+    </div>
+</div>

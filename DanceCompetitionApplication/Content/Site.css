@@ -18,3 +18,97 @@ select,
 textarea {
     max-width: 280px;
 }
+
+table{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+td, th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    padding-left: 10px;
+    border: 1px solid #E3E3E3;
+}
+
+th {
+    background-color: #212529;
+    color: white;
+}
+
+tr:nth-child(even){
+    background-color: #F2F2F2;
+}
+
+tr:hover{
+    background-color: #E3E3E3;
+}
+
+.addBtn{
+    background-color: #97B6D0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 180px;
+}
+
+.addBtn a, .updateBtn a, .deleteBtn a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.backLink{
+    color: black;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.detailsInfo{
+    margin-bottom: 0;
+    margin-top: 10px;
+}
+
+.detailsContainer{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.timeBold{
+    font-weight: 500;
+}
+
+.actionBtns{
+    display: flex;
+    gap: 10px;
+}
+
+.updateBtn{
+    background-color: #97B6D0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 80px;
+}
+
+.deleteBtn{
+    background-color: #9E4B65;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 80px;
+}
+
+.confirmDeleteBtn {
+    background-color: #9E4B65;
+    color: white;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+}

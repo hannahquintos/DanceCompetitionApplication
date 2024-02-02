@@ -17,7 +17,7 @@
 
     @foreach (DanceCompetitionApplication.Models.PerformanceDto Performance in Model)
     {
-        <tr>
+        <tr onclick="window.location = '/Performance/Details/@Performance.PerformanceId';">
             <td>@Performance.PerformanceTime</td>
             <td>@Performance.PerformanceId</td>
             <td>@Performance.RoutineName</td>
@@ -27,3 +27,7 @@
     }
 
 </table>
+
+<div class="addBtn">
+    <a href="/Performance/New">Add Performance +</a>
+</div>
