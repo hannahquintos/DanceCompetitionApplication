@@ -292,6 +292,7 @@
     <Content Include="Views\Performance\New.cshtml" />
     <Content Include="Views\Performance\Error.cshtml" />
     <Content Include="Views\Performance\Edit.cshtml" />
+    <Content Include="Views\Performance\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

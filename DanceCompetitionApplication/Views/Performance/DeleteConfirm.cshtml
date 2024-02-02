@@ -1,0 +1,15 @@
+﻿@model DanceCompetitionApplication.Models.PerformanceDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this performance?</h2>
+
+<p>Entry #@Model.PerformanceId</p>
+<h2>@Model.RoutineName</h2>
+<p><span>@Model.PerformanceTime</span> @Model.CategoryName</p>
+
+<form action="/Performance/Delete/@Model.PerformanceId" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

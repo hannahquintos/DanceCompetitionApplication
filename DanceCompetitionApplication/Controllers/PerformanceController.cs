@@ -146,25 +146,38 @@ namespace DanceCompetitionApplication.Controllers
             }
         }
 
-        // GET: Performance/Delete/5
-        public ActionResult Delete(int id)
+        // GET: Performance/DeleteConfirm/5
+        public ActionResult DeleteConfirm(int id)
         {
-            return View();
+            // get the performance information
+
+            string url = "findperformance/" + id;
+            HttpResponseMessage response = client.GetAsync(url).Result;
+
+            PerformanceDto selectedperformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
+
+            return View(selectedperformance);
         }
 
         // POST: Performance/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Performance performance)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            //send the request to the API
+            string url = "deleteperformance/" + id;
 
-                return RedirectToAction("Index");
-            }
-            catch
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            if (response.IsSuccessStatusCode)
             {
-                return View();
+                return RedirectToAction("List");
+            }
+            else
+            {
+                return RedirectToAction("Error");
             }
         }
     }
