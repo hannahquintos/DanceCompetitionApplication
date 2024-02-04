@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DanceCompetitionApplication.Models.DancerDto>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Dancers</h2>
+
+@foreach (DanceCompetitionApplication.Models.DancerDto Dancer in Model)
+{
+    <div><a href="/Dancer/Details/@Dancer.DancerId">@Dancer.FirstName @Dancer.LastName</a></div>
+}
+
+<div class="addBtn" id="addDancerBtn">
+    <a href="/Dancer/New">Add Dancer +</a>
+</div>
+

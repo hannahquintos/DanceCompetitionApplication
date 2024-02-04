@@ -106,9 +106,9 @@ namespace DanceCompetitionApplication.Controllers
             string url = "categorydata/findcategory/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            CategoryDto selectedcategory = response.Content.ReadAsAsync<CategoryDto>().Result;
+            CategoryDto SelectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
 
-            return View(selectedcategory);
+            return View(SelectedCategory);
         }
 
         // POST: Category/Update/5
@@ -151,14 +151,14 @@ namespace DanceCompetitionApplication.Controllers
             string url = "categorydata/findcategory/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            CategoryDto selectedcategory = response.Content.ReadAsAsync<CategoryDto>().Result;
+            CategoryDto SelectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
 
-            return View(selectedcategory);
+            return View(SelectedCategory);
         }
 
         // POST: Category/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Category category)
+        public ActionResult Delete(int id)
         {
             //send the request to the API
             string url = "categorydata/deletecategory/" + id;

@@ -1,0 +1,21 @@
+﻿@model DanceCompetitionApplication.Models.DancerDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a class="backLink" href="/Dancer/List">< Back to Dancers</a>
+
+<div class="detailsContainer">
+    <h2 class="detailsInfo">@Model.FirstName @Model.LastName</h2>
+    <p class="detailsInfo">Date of Birth: @Model.DateOfBirth</p>
+</div>
+
+<div class="actionBtns">
+    <div class="updateBtn">
+        <a href="/Dancer/Edit/@Model.DancerId">Update</a>
+    </div>
+    <div class="deleteBtn">
+        <a href="/Dancer/DeleteConfirm/@Model.DancerId">Delete</a>
+    </div>
+</div>

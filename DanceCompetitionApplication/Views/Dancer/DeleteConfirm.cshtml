@@ -1,0 +1,18 @@
+﻿@model DanceCompetitionApplication.Models.DancerDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<a class="backLink" href="/Dancer/Details/@Model.DancerId">< Back</a>
+
+<h2>Are you sure you want to delete this dancer?</h2>
+
+<div class="detailsContainer">
+    <h2 class="detailsInfo">@Model.FirstName @Model.LastName</h2>
+    <p class="detailsInfo">Date of Birth: @Model.DateOfBirth</p>
+</div>
+
+<form action="/Dancer/Delete/@Model.DancerId" method="POST">
+    <input class="confirmDeleteBtn" type="submit" value="Confirm Delete" />
+</form>

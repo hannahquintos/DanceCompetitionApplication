@@ -14,30 +14,76 @@ namespace DanceCompetitionApplication.Controllers
 {
     public class DancerDataController : ApiController
     {
+        //utilizing the database connection
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/DancerData
-        public IQueryable<Dancer> GetDancers()
+        /// <summary>
+        ///     Returns a list of all dancers in the system
+        /// </summary>
+        /// <returns>
+        ///     Returns all dancers in the database including their dancer id, first name, last name, and date of birth
+        /// </returns>
+        /// <example>
+        ///     GET: api/DancerData/ListDancers
+        /// </example>
+        [HttpGet]
+        public IEnumerable<DancerDto> ListDancers()
         {
-            return db.Dancers;
+            //select all from dancers
+            List<Dancer> Dancers = db.Dancers.ToList();
+
+            List<DancerDto> DancerDtos = new List<DancerDto>();
+
+            Dancers.ForEach(d => DancerDtos.Add(new DancerDto()
+            {
+                DancerId = d.DancerId,
+                FirstName = d.FirstName,
+                LastName = d.LastName,
+                DateOfBirth = d.DateOfBirth
+            }
+            ));
+
+            return DancerDtos;
         }
 
-        // GET: api/DancerData/5
+        /// <summary>
+        ///     Recieves a dancer id and returns the corresponding dancer
+        /// </summary>
+        /// <param name="id"> The primary key, dancer id (as an integer) </param>
+        /// <returns>
+        ///     Returns one dancer for the given id including their dancer id, first name, last name, and date of birth
+        /// </returns>
+        /// <example>
+        ///     GET: api/DancerData/FindDancer/5
+        ///         returns --> <DancerId>5</DancerId>
+        ///                     <DateOfBirth>2007-06-25T00:00:00</DateOfBirth>
+        ///                     <FirstName>Chiara</FirstName>
+        ///                     <LastName>Carneiro</LastName>
+        /// </example>
         [ResponseType(typeof(Dancer))]
-        public IHttpActionResult GetDancer(int id)
+        [HttpGet]
+        public IHttpActionResult FindDancer(int id)
         {
-            Dancer dancer = db.Dancers.Find(id);
-            if (dancer == null)
+            Dancer Dancer = db.Dancers.Find(id);
+            DancerDto DancerDto = new DancerDto()
+            {
+                DancerId = Dancer.DancerId,
+                FirstName = Dancer.FirstName,
+                LastName = Dancer.LastName,
+                DateOfBirth= Dancer.DateOfBirth
+            };
+            if (Dancer == null)
             {
                 return NotFound();
             }
 
-            return Ok(dancer);
+            return Ok(DancerDto);
         }
 
-        // PUT: api/DancerData/5
+        // POST: api/DancerData/UpdateDancer/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutDancer(int id, Dancer dancer)
+        [HttpPost]
+        public IHttpActionResult UpdateDancer(int id, Dancer dancer)
         {
             if (!ModelState.IsValid)
             {
@@ -70,9 +116,10 @@ namespace DanceCompetitionApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DancerData
+        // POST: api/DancerData/AddDancer
         [ResponseType(typeof(Dancer))]
-        public IHttpActionResult PostDancer(Dancer dancer)
+        [HttpPost]
+        public IHttpActionResult AddDancer(Dancer dancer)
         {
             if (!ModelState.IsValid)
             {
@@ -85,8 +132,9 @@ namespace DanceCompetitionApplication.Controllers
             return CreatedAtRoute("DefaultApi", new { id = dancer.DancerId }, dancer);
         }
 
-        // DELETE: api/DancerData/5
+        // POST: api/DancerData/DeleteDancer/5
         [ResponseType(typeof(Dancer))]
+        [HttpPost]
         public IHttpActionResult DeleteDancer(int id)
         {
             Dancer dancer = db.Dancers.Find(id);
@@ -98,7 +146,7 @@ namespace DanceCompetitionApplication.Controllers
             db.Dancers.Remove(dancer);
             db.SaveChanges();
 
-            return Ok(dancer);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

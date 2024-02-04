@@ -127,7 +127,7 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         // POST: api/CategoryData/DeleteCategory/5
-        [ResponseType(typeof(Performance))]
+        [ResponseType(typeof(Category))]
         [HttpPost]
         public IHttpActionResult DeleteCategory(int id)
         {

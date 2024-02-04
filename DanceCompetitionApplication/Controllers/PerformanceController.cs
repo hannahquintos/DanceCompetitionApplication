@@ -108,9 +108,9 @@ namespace DanceCompetitionApplication.Controllers
             string url = "performancedata/findperformance/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            PerformanceDto selectedperformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
+            PerformanceDto SelectedPerformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
 
-            return View(selectedperformance);
+            return View(SelectedPerformance);
         }
 
         // POST: Performance/Update/5
@@ -156,14 +156,14 @@ namespace DanceCompetitionApplication.Controllers
             string url = "performancedata/findperformance/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
-            PerformanceDto selectedperformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
+            PerformanceDto SelectedPerformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
 
-            return View(selectedperformance);
+            return View(SelectedPerformance);
         }
 
         // POST: Performance/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Performance performance)
+        public ActionResult Delete(int id)
         {
             //send the request to the API
             string url = "performancedata/deleteperformance/" + id;

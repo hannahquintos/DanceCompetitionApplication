@@ -1,0 +1,27 @@
+﻿@model DanceCompetitionApplication.Models.DancerDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Dancer</h2>
+
+<form action="/Dancer/Update/@Model.DancerId" method="POST">
+    <!-- hidden input to send DancerId as part of POST information -->
+    <input type="text" style="display:none;" name="DancerId" value="@Model.DancerId" />
+    <div>
+        <label>First Name:</label>
+        <input type="text" name="FirstName" value="@Model.FirstName"/>
+    </div>
+    <div>
+        <label>Last Name:</label>
+        <input type="text" name="LastName" value="@Model.LastName"/>
+    </div>
+    <div>
+        <label>Date of Birth:</label>
+        <input type="datetime" name="DateOfBirth" value="@Model.DateOfBirth"/>
+    </div>
+    <div>
+        <input type="submit" value="Update" />
+    </div>
+</form>

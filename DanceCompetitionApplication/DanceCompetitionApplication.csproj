@@ -303,10 +303,15 @@
     <Content Include="Views\Category\New.cshtml" />
     <Content Include="Views\Category\Edit.cshtml" />
     <Content Include="Views\Category\DeleteConfirm.cshtml" />
+    <Content Include="Views\Dancer\List.cshtml" />
+    <Content Include="Views\Dancer\Details.cshtml" />
+    <Content Include="Views\Dancer\Error.cshtml" />
+    <Content Include="Views\Dancer\New.cshtml" />
+    <Content Include="Views\Dancer\Edit.cshtml" />
+    <Content Include="Views\Dancer\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Dancer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
