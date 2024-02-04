@@ -45,13 +45,21 @@ tr:hover{
     background-color: #E3E3E3;
 }
 
-.addBtn{
+#addPerformanceBtn {
+    width: 180px;
+}
+
+#addCateoryBtn {
+    margin-top: 10px;
+    width: 150px;
+}
+
+.addBtn {
     background-color: #97B6D0;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 15px;
-    width: 180px;
 }
 
 .addBtn a, .updateBtn a, .deleteBtn a{

@@ -1,0 +1,20 @@
+﻿@model DanceCompetitionApplication.Models.CategoryDto
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Category</h2>
+
+<form action="/Category/Update/@Model.CategoryId" method="POST">
+    <!-- hidden input to send CategoryId as part of POST information -->
+    <input type="text" style="display:none;" name="CategoryId" value="@Model.CategoryId" />
+    <div>
+        <label>Category Name:</label>
+        <input type="text" name="CategoryName" value="@Model.CategoryName"/>
+    </div>
+    <div>
+        <input type="submit" value="Update" />
+    </div>
+</form>
+

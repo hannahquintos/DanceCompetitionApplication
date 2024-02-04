@@ -182,6 +182,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CategoryDataController.cs" />
+    <Compile Include="Controllers\DancerController.cs" />
+    <Compile Include="Controllers\DancerDataController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PerformanceController.cs" />
@@ -293,9 +297,16 @@
     <Content Include="Views\Performance\Error.cshtml" />
     <Content Include="Views\Performance\Edit.cshtml" />
     <Content Include="Views\Performance\DeleteConfirm.cshtml" />
+    <Content Include="Views\Category\List.cshtml" />
+    <Content Include="Views\Category\Details.cshtml" />
+    <Content Include="Views\Category\Error.cshtml" />
+    <Content Include="Views\Category\New.cshtml" />
+    <Content Include="Views\Category\Edit.cshtml" />
+    <Content Include="Views\Category\DeleteConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Dancer\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

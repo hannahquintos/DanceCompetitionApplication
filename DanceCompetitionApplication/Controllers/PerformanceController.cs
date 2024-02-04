@@ -20,7 +20,7 @@ namespace DanceCompetitionApplication.Controllers
         {
             client = new HttpClient();
             //set base part of path for accessing information in performance controller
-            client.BaseAddress = new Uri("https://localhost:44355/api/performancedata/");
+            client.BaseAddress = new Uri("https://localhost:44355/api/");
         }
 
         // GET: Performance/List
@@ -31,7 +31,7 @@ namespace DanceCompetitionApplication.Controllers
             // curl https://localhost:44355/api/performancedata/listperformances
 
             // set the url
-            string url = "listperformances";
+            string url = "performancedata/listperformances";
 
             HttpResponseMessage response = client.GetAsync(url).Result;
 
@@ -50,11 +50,11 @@ namespace DanceCompetitionApplication.Controllers
         public ActionResult Details(int id)
         {
             // get one performance in the system through an HTTP request
-            // GET {resource}/api/performancedata/findperformance{id}
+            // GET {resource}/api/performancedata/findperformance/{id}
             // curl https://localhost:44355/api/performancedata/findperformance/{id}
 
             // set the url
-            string url = "findperformance/"+id;
+            string url = "performancedata/findperformance/" + id;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
 
@@ -73,6 +73,8 @@ namespace DanceCompetitionApplication.Controllers
         // GET: Performance/New
         public ActionResult New()
         {
+            //GET api/categorydata/listcategories
+
             return View();
         }
 
@@ -80,7 +82,7 @@ namespace DanceCompetitionApplication.Controllers
         [HttpPost]
         public ActionResult Create(Performance performance)
         {
-            string url = "addperformance";
+            string url = "performancedata/addperformance";
 
             string jsonpayload = jss.Serialize(performance);
 
@@ -103,7 +105,7 @@ namespace DanceCompetitionApplication.Controllers
         {
             // get the performance information
 
-            string url = "findperformance/" + id;
+            string url = "performancedata/findperformance/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             PerformanceDto selectedperformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
@@ -124,7 +126,7 @@ namespace DanceCompetitionApplication.Controllers
                 Debug.WriteLine(performance.CategoryId);*/
 
                 //send the request to the API
-                string url = "updateperformance/" + id;
+                string url = "performancedata/updateperformance/" + id;
 
                 // serialize into JSON
                 string jsonpayload = jss.Serialize(performance);
@@ -151,7 +153,7 @@ namespace DanceCompetitionApplication.Controllers
         {
             // get the performance information
 
-            string url = "findperformance/" + id;
+            string url = "performancedata/findperformance/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
 
             PerformanceDto selectedperformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
@@ -164,7 +166,7 @@ namespace DanceCompetitionApplication.Controllers
         public ActionResult Delete(int id, Performance performance)
         {
             //send the request to the API
-            string url = "deleteperformance/" + id;
+            string url = "performancedata/deleteperformance/" + id;
 
             HttpContent content = new StringContent("");
             content.Headers.ContentType.MediaType = "application/json";

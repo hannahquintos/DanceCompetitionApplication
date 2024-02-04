@@ -20,4 +20,12 @@ namespace DanceCompetitionApplication.Models
         //a category has many performances
         public ICollection<Performance> Performances { get; set; }
     }
+
+    public class CategoryDto
+    {
+        public int CategoryId { get; set; }
+
+        public string CategoryName { get; set; }
+
+    }
 }

@@ -14,15 +14,21 @@ namespace DanceCompetitionApplication.Controllers
 {
     public class PerformanceDataController : ApiController
     {
+        //utilizing the database connection
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/PerformanceData/ListPerformances
+        /// <summary>
+        ///     Returns a list of all performances in the system
+        /// </summary>
+        /// <returns>
+        ///     Returns all performances in the database including their performance id, performance time, routine name, studio, and category name
+        /// </returns>
+        /// <example>
+        ///     GET: api/PerformanceData/ListPerformances
+        /// </example>
         [HttpGet]
         public IEnumerable<PerformanceDto> ListPerformances()
         {
-            //send query to database
-
-
             //select all from performances
             List<Performance> Performances = db.Performances.ToList();
 
@@ -42,7 +48,22 @@ namespace DanceCompetitionApplication.Controllers
             return PerformanceDtos;
         }
 
-        // GET: api/PerformanceData/FindPerformance/5
+        /// <summary>
+        ///     Recieves a performance id and returns the corresponding performance
+        /// </summary>
+        /// <param name="id"> The primary key, performance id (as an integer) </param>
+        /// <returns>
+        ///     Returns one performance for the given id including its performance id, performance time, routine name, studio, category id, and category name
+        /// </returns>
+        /// <example>
+        ///     GET: api/PerformanceData/FindPerformance/5
+        ///         returns --> <CategoryId>5</CategoryId>
+        ///                     <CategoryName>Teen Tap Group</CategoryName>
+        ///                     <PerformanceId>5</PerformanceId>
+        ///                     <PerformanceTime>2024-03-09T09:22:00</PerformanceTime>
+        ///                     <RoutineName>The Verdict</RoutineName>
+        ///                     <Studio>Elite Danceworx</Studio>
+        /// </example>
         [ResponseType(typeof(Performance))]
         [HttpGet]
         public IHttpActionResult FindPerformance(int id)

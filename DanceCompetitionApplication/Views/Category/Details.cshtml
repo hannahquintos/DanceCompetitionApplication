@@ -1,0 +1,20 @@
+﻿@model DanceCompetitionApplication.Models.CategoryDto
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<a class="backLink" href="/Category/List">< Back to Categories</a>
+
+<div class="detailsContainer">
+    <h2 class="detailsInfo">@Model.CategoryName</h2>
+</div>
+
+<div class="actionBtns">
+    <div class="updateBtn">
+        <a href="/Category/Edit/@Model.CategoryId">Update</a>
+    </div>
+    <div class="deleteBtn">
+        <a href="/Category/DeleteConfirm/@Model.CategoryId">Delete</a>
+    </div>
+</div>
