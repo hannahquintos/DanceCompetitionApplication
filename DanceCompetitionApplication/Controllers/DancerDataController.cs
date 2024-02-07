@@ -49,7 +49,7 @@ namespace DanceCompetitionApplication.Controllers
         /// <summary>
         ///     Recieves a dancer id and returns the corresponding dancer
         /// </summary>
-        /// <param name="id"> The primary key, dancer id (as an integer) </param>
+        /// <param name="id"> The dancer's primary key, dancer id (as an integer) </param>
         /// <returns>
         ///     Returns one dancer for the given id including their dancer id, first name, last name, and date of birth
         /// </returns>
@@ -80,7 +80,24 @@ namespace DanceCompetitionApplication.Controllers
             return Ok(DancerDto);
         }
 
-        // POST: api/DancerData/UpdateDancer/5
+        /// <summary>
+        ///     Recieves a dancer id and the updated information about a dancer, then updates the dancer's information in the system with the data input
+        /// </summary>
+        /// <param name="id"> The dancer's primary key, dancer id (as an integer) of the dancer to update </param>
+        /// <param name="dancer"> Updated information about a dancer (dancer object as JSON FORM DATA)
+        ///                            - properties of dancer object include dancer id, first name, last name, date of birth
+        /// </param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No Content Response)
+        ///         or
+        ///     HEADER: 400 (Bad Request)
+        ///         or
+        ///     HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///   POST: api/DancerData/UpdateDancer/5
+        ///   FORM DATA: Dancer JSON object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateDancer(int id, Dancer dancer)
@@ -116,7 +133,22 @@ namespace DanceCompetitionApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/DancerData/AddDancer
+        /// <summary>
+        ///     Recieves information for a new dancer, adds the new dancer and its information to the system
+        /// </summary>
+        /// <param name="dancer"> New dancer and its information (dancer object as JSON FORM DATA)
+        ///                            - properties of dancer object include dancer id, first name, last name, date of birth
+        /// </param>        
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Dancer Id, Dancer Data
+        ///         or
+        ///     HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        ///     POST: api/DancerData/AddDancer
+        ///     FORM DATA: Dancer JSON object
+        /// </example>
         [ResponseType(typeof(Dancer))]
         [HttpPost]
         public IHttpActionResult AddDancer(Dancer dancer)
@@ -132,7 +164,19 @@ namespace DanceCompetitionApplication.Controllers
             return CreatedAtRoute("DefaultApi", new { id = dancer.DancerId }, dancer);
         }
 
-        // POST: api/DancerData/DeleteDancer/5
+        /// <summary>
+        ///     Recieves a dancer id and deletes the corresponding dancer from the system
+        /// </summary>
+        /// <param name="id"> The dancer's primary key, dancer id (as an integer) </param>
+        /// <returns>
+        ///     HEADER: 200 (Ok)
+        ///         or
+        ///     HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///     POST: api/DancerData/DeleteDancer/5
+        ///     FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Dancer))]
         [HttpPost]
         public IHttpActionResult DeleteDancer(int id)

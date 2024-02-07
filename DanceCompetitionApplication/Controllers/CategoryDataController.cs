@@ -47,7 +47,7 @@ namespace DanceCompetitionApplication.Controllers
         /// <summary>
         ///     Recieves a category id and returns the corresponding category
         /// </summary>
-        /// <param name="id"> The primary key, category id (as an integer) </param>
+        /// <param name="id"> The category's primary key, category id (as an integer) </param>
         /// <returns>
         ///     Returns one category for the given id including its category id and category name
         /// </returns>
@@ -74,7 +74,24 @@ namespace DanceCompetitionApplication.Controllers
             return Ok(CategoryDto);
         }
 
-        // POST: api/CategoryData/UpdateCategory/5
+        /// <summary>
+        ///     Recieves a category id and the updated information about a category, then updates the category's information in the system with the data input
+        /// </summary>
+        /// <param name="id"> The category's primary key, category id (as an integer) of the category to update </param>
+        /// <param name="category"> Updated information about a category (category object as JSON FORM DATA)
+        ///                            - properties of category object include category id, category name
+        /// </param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No Content Response)
+        ///         or
+        ///     HEADER: 400 (Bad Request)
+        ///         or
+        ///     HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///   POST: api/CategoryData/UpdateCategory/5
+        ///   FORM DATA: Category JSON object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdateCategory(int id, Category category)
@@ -110,7 +127,22 @@ namespace DanceCompetitionApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/CategoryData/AddCategory
+        /// <summary>
+        ///     Recieves information for a new category, adds the new category and its information to the system
+        /// </summary>
+        /// <param name="category"> New category and its information (category object as JSON FORM DATA)
+        ///                            - properties of category object include category id, category name
+        /// </param>        
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Category Id, Category Data
+        ///         or
+        ///     HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        ///     POST: api/CategoryData/AddCategory
+        ///     FORM DATA: Category JSON object
+        /// </example>
         [ResponseType(typeof(Category))]
         [HttpPost]
         public IHttpActionResult AddCategory(Category category)
@@ -126,7 +158,19 @@ namespace DanceCompetitionApplication.Controllers
             return CreatedAtRoute("DefaultApi", new { id = category.CategoryId }, category);
         }
 
-        // POST: api/CategoryData/DeleteCategory/5
+        /// <summary>
+        ///     Recieves a category id and deletes the corresponding category from the system
+        /// </summary>
+        /// <param name="id"> The category's primary key, category id (as an integer) </param>
+        /// <returns>
+        ///     HEADER: 200 (Ok)
+        ///         or
+        ///     HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///     POST: api/CategoryData/DeleteCategory/5
+        ///     FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Category))]
         [HttpPost]
         public IHttpActionResult DeleteCategory(int id)

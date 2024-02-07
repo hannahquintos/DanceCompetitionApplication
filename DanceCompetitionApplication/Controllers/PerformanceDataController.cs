@@ -51,7 +51,7 @@ namespace DanceCompetitionApplication.Controllers
         /// <summary>
         ///     Recieves a performance id and returns the corresponding performance
         /// </summary>
-        /// <param name="id"> The primary key, performance id (as an integer) </param>
+        /// <param name="id"> The performance's primary key, performance id (as an integer) </param>
         /// <returns>
         ///     Returns one performance for the given id including its performance id, performance time, routine name, studio, category id, and category name
         /// </returns>
@@ -86,7 +86,24 @@ namespace DanceCompetitionApplication.Controllers
             return Ok(PerformanceDto);
         }
 
-        // POST: api/PerformanceData/UpdatePerformance/5
+        /// <summary>
+        ///     Recieves a performance id and the updated information about a performance, then updates the performance's information in the system with the data input
+        /// </summary>
+        /// <param name="id"> The performance's primary key, performance id (as an integer) of the performance to update </param>
+        /// <param name="performance"> Updated information about a performance (performance object as JSON FORM DATA)
+        ///                            - properties of performance object include performance id, performance time, routine name, studio, category id
+        /// </param>
+        /// <returns>
+        ///     HEADER: 200 (Success, No Content Response)
+        ///         or
+        ///     HEADER: 400 (Bad Request)
+        ///         or
+        ///     HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///   POST: api/PerformanceData/UpdatePerformance/5
+        ///   FORM DATA: Performance JSON object
+        /// </example>
         [ResponseType(typeof(void))]
         [HttpPost]
         public IHttpActionResult UpdatePerformance(int id, Performance performance)
@@ -122,7 +139,22 @@ namespace DanceCompetitionApplication.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/PerformanceData/AddPerformance
+        /// <summary>
+        ///     Recieves information for a new performance, adds the new performance and its information to the system
+        /// </summary>
+        /// <param name="performance"> New performance and its information (performance object as JSON FORM DATA)
+        ///                            - properties of performance object include performance id, performance time, routine name, studio, category id
+        /// </param>        
+        /// <returns>
+        ///     HEADER: 201 (Created)
+        ///     CONTENT: Performance Id, Performance Data
+        ///         or
+        ///     HEADER: 400 (Bad Request)
+        /// </returns>
+        /// <example>
+        ///     POST: api/PerformanceData/AddPerformance
+        ///     FORM DATA: Performance JSON object
+        /// </example>
         [ResponseType(typeof(Performance))]
         [HttpPost]
         public IHttpActionResult AddPerformance(Performance performance)
@@ -138,7 +170,19 @@ namespace DanceCompetitionApplication.Controllers
             return CreatedAtRoute("DefaultApi", new { id = performance.PerformanceId }, performance);
         }
 
-        // POST: api/PerformanceData/DeletePerformance/5
+        /// <summary>
+        ///     Recieves a performance id and deletes the corresponding performance from the system
+        /// </summary>
+        /// <param name="id"> The performance's primary key, performance id (as an integer) </param>
+        /// <returns>
+        ///     HEADER: 200 (Ok)
+        ///         or
+        ///     HEADER: 404 (Not Found)
+        /// </returns>
+        /// <example>
+        ///     POST: api/PerformanceData/DeletePerformance/5
+        ///     FORM DATA: (empty)
+        /// </example>
         [ResponseType(typeof(Performance))]
         [HttpPost]
         public IHttpActionResult DeletePerformance(int id)
