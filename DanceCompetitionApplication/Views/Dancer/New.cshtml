@@ -3,24 +3,81 @@
     ViewBag.Title = "New";
 }
 
+<script>
+    //client side validation
+    function validateDancerForm() {
+        var validDancerData = true;
+
+        var DancerId = document.getElementById("DancerId").value;
+        var DancerIdError = document.getElementById("DancerIdError");
+
+        if (DancerId === "") {
+            DancerIdError.style.display = "block";
+            validDancerData = false;
+        } else {
+            DancerIdError.style.display = "none";
+        }
+
+        var FirstName = document.getElementById("FirstName").value;
+        var FirstNameError = document.getElementById("FirstNameError");
+
+        if (FirstName === "") {
+            FirstNameError.style.display = "block";
+            validDancerData = false;
+        } else {
+            FirstNameError.style.display = "none";
+        }
+
+        var LastName = document.getElementById("LastName").value;
+        var LastNameError = document.getElementById("LastNameError");
+
+        if (LastName === "") {
+            LastNameError.style.display = "block";
+            validDancerData = false;
+        } else {
+            LastNameError.style.display = "none";
+        }
+
+        var DateOfBirth = document.getElementById("DateOfBirth").value;
+        var DateOfBirthError = document.getElementById("DateOfBirthError");
+
+        if (DateOfBirth === "") {
+            DateOfBirthError.style.display = "block";
+            validDancerData = false;
+        } else {
+            DateOfBirthError.style.display = "none";
+        }
+
+        if (validDancerData === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
 <h2>Create Dancer</h2>
 
-<form action="/Dancer/Create" method="POST">
+<form action="/Dancer/Create" method="POST" onsubmit="return validateDancerForm()">
     <div>
+        <p id="DancerIdError" style="display:none; color:red;">*Please enter a dancer id</p>
         <label>Dancer Id:</label>
-        <input type="number" name="DancerId" />
+        <input type="number" name="DancerId" id="DancerId"/>
     </div>
     <div>
+        <p id="FirstNameError" style="display:none; color:red;">*Please enter a first name</p>
         <label>First Name:</label>
-        <input type="text" name="FirstName" />
+        <input type="text" name="FirstName" id="FirstName"/>
     </div>
     <div>
+        <p id="LastNameError" style="display:none; color:red;">*Please enter a last name</p>
         <label>Last Name:</label>
-        <input type="text" name="LastName" />
+        <input type="text" name="LastName" id="LastName"/>
     </div>
     <div>
+        <p id="DateOfBirthError" style="display:none; color:red;">*Please enter a date of birth</p>
         <label>Date of Birth:</label>
-        <input type="datetime" name="DateOfBirth" />
+        <input type="date" name="DateOfBirth" id="DateOfBirth"/>
     </div>
     <div>
         <input type="submit" value="Add Dancer" />

@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DanceCompetitionApplication.Models;
+using System.Diagnostics;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -107,6 +108,16 @@ namespace DanceCompetitionApplication.Controllers
                 return BadRequest(ModelState);
             }
 
+            //server side validation
+
+            /*Debug.WriteLine("Dancer date of birth is " + dancer.DateOfBirth);
+            Debug.WriteLine("DateTime min value is " + DateTime.MinValue);*/
+
+            if (string.IsNullOrEmpty(dancer.FirstName) || string.IsNullOrEmpty(dancer.LastName) || dancer.DateOfBirth == DateTime.MinValue)
+            {
+                return BadRequest(ModelState);
+            }
+
             if (id != dancer.DancerId)
             {
                 return BadRequest();
@@ -154,6 +165,16 @@ namespace DanceCompetitionApplication.Controllers
         public IHttpActionResult AddDancer(Dancer dancer)
         {
             if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //server side validation
+
+            /*Debug.WriteLine("Dancer date of birth is " + dancer.DateOfBirth);
+            Debug.WriteLine("DateTime min value is " + DateTime.MinValue);*/
+
+            if (dancer.DancerId <= 0 || string.IsNullOrEmpty(dancer.FirstName) || string.IsNullOrEmpty(dancer.LastName) || dancer.DateOfBirth == DateTime.MinValue)
             {
                 return BadRequest(ModelState);
             }

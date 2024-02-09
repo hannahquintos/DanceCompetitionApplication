@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DanceCompetitionApplication.Models;
+using Microsoft.Ajax.Utilities;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -82,7 +84,7 @@ namespace DanceCompetitionApplication.Controllers
             {
                 return NotFound();
             }
-
+            Debug.WriteLine("performance time: " + Performance.PerformanceTime);
             return Ok(PerformanceDto);
         }
 
@@ -109,6 +111,16 @@ namespace DanceCompetitionApplication.Controllers
         public IHttpActionResult UpdatePerformance(int id, Performance performance)
         {
             if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //server side validation
+
+            /*Debug.WriteLine("Performance time is " + performance.PerformanceTime);
+            Debug.WriteLine("DateTime min value is " + DateTime.MinValue);*/
+
+            if (string.IsNullOrEmpty(performance.RoutineName) || performance.PerformanceTime == DateTime.MinValue || string.IsNullOrEmpty(performance.Studio) || performance.CategoryId <= 0)
             {
                 return BadRequest(ModelState);
             }
@@ -160,6 +172,16 @@ namespace DanceCompetitionApplication.Controllers
         public IHttpActionResult AddPerformance(Performance performance)
         {
             if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //server side validation
+
+            /*Debug.WriteLine("Performance time is " + performance.PerformanceTime);
+            Debug.WriteLine("DateTime min value is " + DateTime.MinValue);*/
+
+            if (performance.PerformanceId <=0 || string.IsNullOrEmpty(performance.RoutineName) || performance.PerformanceTime == DateTime.MinValue || string.IsNullOrEmpty(performance.Studio) || performance.CategoryId <= 0)
             {
                 return BadRequest(ModelState);
             }

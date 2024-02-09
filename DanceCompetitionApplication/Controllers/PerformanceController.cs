@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
+using Newtonsoft.Json;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -73,8 +74,6 @@ namespace DanceCompetitionApplication.Controllers
         // GET: Performance/New
         public ActionResult New()
         {
-            //GET api/categorydata/listcategories
-
             return View();
         }
 
@@ -84,7 +83,9 @@ namespace DanceCompetitionApplication.Controllers
         {
             string url = "performancedata/addperformance";
 
-            string jsonpayload = jss.Serialize(performance);
+            string jsonpayload = JsonConvert.SerializeObject(performance);
+
+            /*Debug.WriteLine(jsonpayload);*/
 
             HttpContent content = new StringContent(jsonpayload);
             content.Headers.ContentType.MediaType = "application/json";
@@ -129,7 +130,7 @@ namespace DanceCompetitionApplication.Controllers
                 string url = "performancedata/updateperformance/" + id;
 
                 // serialize into JSON
-                string jsonpayload = jss.Serialize(performance);
+                string jsonpayload = JsonConvert.SerializeObject(performance);
                 /*Debug.WriteLine(jsonpayload);*/
 
                 HttpContent content = new StringContent(jsonpayload);

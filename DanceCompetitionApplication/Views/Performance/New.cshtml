@@ -3,28 +3,96 @@
     ViewBag.Title = "New";
 }
 
+<script>
+    //client side validation
+    function validatePerformanceForm() {
+        var validPerformanceData = true;
+
+        var PerformanceId = document.getElementById("PerformanceId").value;
+        var PerformanceIdError = document.getElementById("PerformanceIdError");
+
+        if (PerformanceId === "") {
+            PerformanceIdError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            PerformanceIdError.style.display = "none";
+        }
+
+        var RoutineName = document.getElementById("RoutineName").value;
+        var RoutineNameError = document.getElementById("RoutineNameError");
+
+        if (RoutineName === "") {
+            RoutineNameError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            RoutineNameError.style.display = "none";
+        }
+
+        var PerformanceTime = document.getElementById("PerformanceTime").value;
+        var PerformanceTimeError = document.getElementById("PerformanceTimeError");
+
+        if (PerformanceTime === "") {
+            PerformanceTimeError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            PerformanceTimeError.style.display = "none";
+        }
+
+        var Studio = document.getElementById("Studio").value;
+        var StudioError = document.getElementById("StudioError");
+
+        if (Studio === "") {
+            StudioError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            StudioError.style.display = "none";
+        }
+
+        var CategoryId = document.getElementById("CategoryId").value;
+        var CategoryIdError = document.getElementById("CategoryIdError");
+
+        if (CategoryId === "") {
+            CategoryIdError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            CategoryIdError.style.display = "none";
+        }
+
+        if (validPerformanceData === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
 <h2>Create Performance</h2>
 
-<form action="/Performance/Create" method="POST">
+<form action="/Performance/Create" method="POST" onsubmit="return validatePerformanceForm()">
     <div>
+        <p id="PerformanceIdError" style="display:none; color:red;">*Please enter a performance id</p>
         <label>Performance Id:</label>
-        <input type="number" name="PerformanceId" />
+        <input type="number" name="PerformanceId" id="PerformanceId"/>
     </div>
     <div>
+        <p id="RoutineNameError" style="display:none; color:red;">*Please enter a routine name</p>
         <label>Routine Name:</label>
-        <input type="text" name="RoutineName" />
+        <input type="text" name="RoutineName" id="RoutineName"/>
     </div>
     <div>
+        <p id="PerformanceTimeError" style="display:none; color:red;">*Please enter a performance time</p>
         <label>Performance Time:</label>
-        <input type="datetime" name="PerformanceTime" />
+        <input type="datetime-local" name="PerformanceTime" id="PerformanceTime"/>
     </div>
     <div>
+        <p id="StudioError" style="display:none; color:red;">*Please enter a studio</p>
         <label>Studio:</label>
-        <input type="text" name="Studio" />
+        <input type="text" name="Studio" id="Studio"/>
     </div>
     <div>
+        <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category id</p>
         <label>Category (Id):</label>
-        <input type="number" name="CategoryId" />
+        <input type="number" name="CategoryId" id="CategoryId"/>
     </div>
     <div>
         <input type="submit" value="Add Performance" />

@@ -4,16 +4,40 @@
     ViewBag.Title = "Edit";
 }
 
+<script>
+    //client side validation
+    function validateCategoryForm() {
+        var validCategoryData = true;
+
+        var CategoryName = document.getElementById("CategoryName").value;
+        var CategoryNameError = document.getElementById("CategoryNameError");
+
+        if (CategoryName === "") {
+            CategoryNameError.style.display = "block";
+            validCategoryData = false;
+        } else {
+            CategoryNameError.style.display = "none";
+        }
+
+        if (validCategoryData === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
 <a class="backLink" href="/Category/Details/@Model.CategoryId">< Back</a>
 
 <h2>Edit Category</h2>
 
-<form action="/Category/Update/@Model.CategoryId" method="POST">
+<form action="/Category/Update/@Model.CategoryId" method="POST" onsubmit="return validateCategoryForm()">
     <!-- hidden input to send CategoryId as part of POST information -->
     <input type="text" style="display:none;" name="CategoryId" value="@Model.CategoryId" />
     <div>
+        <p id="CategoryNameError" style="display:none; color:red;">*Please enter a category name</p>
         <label>Category Name:</label>
-        <input type="text" name="CategoryName" value="@Model.CategoryName"/>
+        <input type="text" name="CategoryName" value="@Model.CategoryName" id="CategoryName"/>
     </div>
     <div>
         <input type="submit" value="Update" />

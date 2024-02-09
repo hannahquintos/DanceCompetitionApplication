@@ -4,28 +4,85 @@
     ViewBag.Title = "Edit";
 }
 
+<script>
+    //client side validation
+    function validatePerformanceForm() {
+        var validPerformanceData = true;
+
+        var RoutineName = document.getElementById("RoutineName").value;
+        var RoutineNameError = document.getElementById("RoutineNameError");
+
+        if (RoutineName === "") {
+            RoutineNameError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            RoutineNameError.style.display = "none";
+        }
+
+        var PerformanceTime = document.getElementById("PerformanceTime").value;
+        var PerformanceTimeError = document.getElementById("PerformanceTimeError");
+
+        if (PerformanceTime === "") {
+            PerformanceTimeError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            PerformanceTimeError.style.display = "none";
+        }
+
+        var Studio = document.getElementById("Studio").value;
+        var StudioError = document.getElementById("StudioError");
+
+        if (Studio === "") {
+            StudioError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            StudioError.style.display = "none";
+        }
+
+        var CategoryId = document.getElementById("CategoryId").value;
+        var CategoryIdError = document.getElementById("CategoryIdError");
+
+        if (CategoryId === "") {
+            CategoryIdError.style.display = "block";
+            validPerformanceData = false;
+        } else {
+            CategoryIdError.style.display = "none";
+        }
+
+        if (validPerformanceData === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
 <a class="backLink" href="/Performance/Details/@Model.PerformanceId">< Back</a>
 
 <h2>Edit Performance</h2>
 
-<form action="/Performance/Update/@Model.PerformanceId" method="POST">
+<form action="/Performance/Update/@Model.PerformanceId" method="POST" onsubmit="return validatePerformanceForm()">
     <!-- hidden input to send PerformanceId as part of POST information -->
     <input type="text" style="display:none;" name="PerformanceId" value="@Model.PerformanceId" />
     <div>
+        <p id="RoutineNameError" style="display:none; color:red;">*Please enter a routine name</p>
         <label>Routine Name:</label>
-        <input type="text" name="RoutineName" value="@Model.RoutineName"/>
+        <input type="text" name="RoutineName" value="@Model.RoutineName" id="RoutineName"/>
     </div>
     <div>
+        <p id="PerformanceTimeError" style="display:none; color:red;">*Please enter a performance time</p>
         <label>Performance Time:</label>
-        <input type="datetime" name="PerformanceTime" value="@Model.PerformanceTime"/>
+        <input type="datetime-local" name="PerformanceTime" value="@Model.PerformanceTime.ToString("yyyy-MM-ddTHH:mm:ss")" id="PerformanceTime"/>
     </div>
     <div>
+        <p id="StudioError" style="display:none; color:red;">*Please enter a studio</p>
         <label>Studio:</label>
-        <input type="text" name="Studio" value="@Model.Studio"/>
+        <input type="text" name="Studio" value="@Model.Studio" id="Studio"/>
     </div>
     <div>
+        <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category id</p>
         <label>Category (Id):</label>
-        <input type="number" name="CategoryId" value="@Model.CategoryId"/>
+        <input type="number" name="CategoryId" value="@Model.CategoryId" id="CategoryId"/>
     </div>
     <div>
         <input type="submit" value="Update" />

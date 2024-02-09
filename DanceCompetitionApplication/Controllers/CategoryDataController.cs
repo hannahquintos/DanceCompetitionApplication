@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DanceCompetitionApplication.Models;
+using System.Diagnostics;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -101,6 +102,13 @@ namespace DanceCompetitionApplication.Controllers
                 return BadRequest(ModelState);
             }
 
+            //server side validation
+
+            if (string.IsNullOrEmpty(category.CategoryName))
+            {
+                return BadRequest(ModelState);
+            }
+
             if (id != category.CategoryId)
             {
                 return BadRequest();
@@ -148,6 +156,13 @@ namespace DanceCompetitionApplication.Controllers
         public IHttpActionResult AddCategory(Category category)
         {
             if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //server side validation
+
+            if (category.CategoryId <= 0 || string.IsNullOrEmpty(category.CategoryName))
             {
                 return BadRequest(ModelState);
             }

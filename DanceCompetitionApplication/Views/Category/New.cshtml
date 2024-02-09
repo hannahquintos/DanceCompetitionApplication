@@ -3,16 +3,51 @@
     ViewBag.Title = "New";
 }
 
+<script>
+    //client side validation
+    function validateCategoryForm() {
+        var validCategoryData = true;
+
+        var CategoryId = document.getElementById("CategoryId").value;
+        var CategoryIdError = document.getElementById("CategoryIdError");
+
+        if (CategoryId === "") {
+            CategoryIdError.style.display = "block";
+            validCategoryData = false;
+        } else {
+            CategoryIdError.style.display = "none";
+        }
+
+        var CategoryName = document.getElementById("CategoryName").value;
+        var CategoryNameError = document.getElementById("CategoryNameError");
+
+        if (CategoryName === "") {
+            CategoryNameError.style.display = "block";
+            validCategoryData = false;
+        } else {
+            CategoryNameError.style.display = "none";
+        }
+
+        if (validCategoryData === false) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+
 <h2>Create Category</h2>
 
-<form action="/Category/Create" method="POST">
+<form action="/Category/Create" method="POST" @*onsubmit="return validateCategoryForm()"*@>
     <div>
+        <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category id</p>
         <label>Category Id:</label>
-        <input type="number" name="CategoryId" />
+        <input type="number" name="CategoryId" id="CategoryId"/>
     </div>
     <div>
+        <p id="CategoryNameError" style="display:none; color:red;">*Please enter a category name</p>
         <label>Category Name:</label>
-        <input type="text" name="CategoryName" />
+        <input type="text" name="CategoryName" id="CategoryName" />
     </div>
     <div>
         <input type="submit" value="Add Category" />
