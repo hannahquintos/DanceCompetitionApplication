@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Diagnostics;
+using DanceCompetitionApplication.Models.ViewModels;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -53,16 +54,23 @@ namespace DanceCompetitionApplication.Controllers
             // GET {resource}/api/categorydata/findcategory/{id}
             // curl https://localhost:44355/api/categorydata/findcategory/{id}
 
+            DetailsCategory ViewModel = new DetailsCategory();
+
+            // selected category information
             // set the url
             string url = "categorydata/findcategory/" + id;
-
             HttpResponseMessage response = client.GetAsync(url).Result;
-
             CategoryDto SelectedCategory = response.Content.ReadAsAsync<CategoryDto>().Result;
+            ViewModel.SelectedCategory = SelectedCategory;
 
+            // showcase all performances in the system related to the selected category
+            url = "performancedata/listperformancesforcategory/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<PerformanceDto> RelatedPerformances = response.Content.ReadAsAsync<IEnumerable<PerformanceDto>>().Result; ;
+            ViewModel.RelatedPerformances = RelatedPerformances;
 
             //Views/Category/List.cshtml
-            return View(SelectedCategory);
+            return View(ViewModel);
         }
 
         public ActionResult Error()

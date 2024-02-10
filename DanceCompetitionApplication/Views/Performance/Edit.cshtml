@@ -1,4 +1,4 @@
-﻿@model DanceCompetitionApplication.Models.PerformanceDto
+﻿@model DanceCompetitionApplication.Models.ViewModels.UpdatePerformance
 
 @{
     ViewBag.Title = "Edit";
@@ -57,32 +57,39 @@
     }
 </script>
 
-<a class="backLink" href="/Performance/Details/@Model.PerformanceId">< Back</a>
+<a class="backLink" href="/Performance/Details/@Model.SelectedPerformance.PerformanceId">< Back</a>
 
 <h2>Edit Performance</h2>
 
-<form action="/Performance/Update/@Model.PerformanceId" method="POST" onsubmit="return validatePerformanceForm()">
+<form action="/Performance/Update/@Model.SelectedPerformance.PerformanceId" method="POST" onsubmit="return validatePerformanceForm()">
     <!-- hidden input to send PerformanceId as part of POST information -->
-    <input type="text" style="display:none;" name="PerformanceId" value="@Model.PerformanceId" />
+    <input type="text" style="display:none;" name="PerformanceId" value="@Model.SelectedPerformance.PerformanceId" />
     <div>
         <p id="RoutineNameError" style="display:none; color:red;">*Please enter a routine name</p>
         <label>Routine Name:</label>
-        <input type="text" name="RoutineName" value="@Model.RoutineName" id="RoutineName"/>
+        <input type="text" name="RoutineName" value="@Model.SelectedPerformance.RoutineName" id="RoutineName"/>
     </div>
     <div>
         <p id="PerformanceTimeError" style="display:none; color:red;">*Please enter a performance time</p>
         <label>Performance Time:</label>
-        <input type="datetime-local" name="PerformanceTime" value="@Model.PerformanceTime.ToString("yyyy-MM-ddTHH:mm:ss")" id="PerformanceTime"/>
+        <input type="datetime-local" name="PerformanceTime" value="@Model.SelectedPerformance.PerformanceTime.ToString("yyyy-MM-ddTHH:mm:ss")" id="PerformanceTime"/>
     </div>
     <div>
         <p id="StudioError" style="display:none; color:red;">*Please enter a studio</p>
         <label>Studio:</label>
-        <input type="text" name="Studio" value="@Model.Studio" id="Studio"/>
+        <input type="text" name="Studio" value="@Model.SelectedPerformance.Studio" id="Studio"/>
     </div>
     <div>
         <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category id</p>
         <label>Category (Id):</label>
-        <input type="number" name="CategoryId" value="@Model.CategoryId" id="CategoryId"/>
+        <!-- <input type="number" name="CategoryId" value="@Model.SelectedPerformance.CategoryId" id="CategoryId"/> -->
+        <!-- select category from list of categories in the system -->
+        <select name="CategoryId" id="CategoryId">
+            @foreach (var category in Model.CategoryOptions)
+            {
+                <option value="@category.CategoryId" @(Model.SelectedPerformance.CategoryId == category.CategoryId ? "selected" : "")>@category.CategoryName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Update" />

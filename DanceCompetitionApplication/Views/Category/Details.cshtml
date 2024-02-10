@@ -1,20 +1,31 @@
-﻿@model DanceCompetitionApplication.Models.CategoryDto
+﻿@model DanceCompetitionApplication.Models.ViewModels.DetailsCategory
 
 @{
     ViewBag.Title = "Details";
 }
 
-<a class="backLink" href="/Category/List">< Back to Categories</a>
+<a class="backLink" href="/Category/List">< All Categories</a>
 
 <div class="detailsContainer">
-    <h2 class="detailsInfo">@Model.CategoryName</h2>
+    <div>
+        <h2 class="detailsInfo">@Model.SelectedCategory.CategoryName</h2>
+    </div>
+    <div>
+        <h3>Performances:</h3>
+        @foreach(var performance in Model.RelatedPerformances)
+            {
+                <div>
+                    <a href="/Performance/Details/@performance.PerformanceId">@performance.RoutineName</a>
+                </div>
+            }
+    </div>
 </div>
 
 <div class="actionBtns">
     <div class="updateBtn">
-        <a href="/Category/Edit/@Model.CategoryId">Update</a>
+        <a href="/Category/Edit/@Model.SelectedCategory.CategoryId">Update</a>
     </div>
     <div class="deleteBtn">
-        <a href="/Category/DeleteConfirm/@Model.CategoryId">Delete</a>
+        <a href="/Category/DeleteConfirm/@Model.SelectedCategory.CategoryId">Delete</a>
     </div>
 </div>

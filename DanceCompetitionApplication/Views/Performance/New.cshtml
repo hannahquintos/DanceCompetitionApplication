@@ -1,4 +1,5 @@
-﻿
+﻿@model IEnumerable<DanceCompetitionApplication.Models.CategoryDto>
+
 @{
     ViewBag.Title = "New";
 }
@@ -90,9 +91,17 @@
         <input type="text" name="Studio" id="Studio"/>
     </div>
     <div>
-        <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category id</p>
-        <label>Category (Id):</label>
-        <input type="number" name="CategoryId" id="CategoryId"/>
+        <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category</p>
+        <label>Category:</label>
+        <!-- <input type="number" name="CategoryId" id="CategoryId"/>* -->
+        <!-- select category from list of categories in the system -->
+        <select name="CategoryId" id="CategoryId">
+            <option value="">select a category</option>
+            @foreach (var category in Model)
+            {
+                <option value="@category.CategoryId">@category.CategoryName</option>
+            }
+        </select>
     </div>
     <div>
         <input type="submit" value="Add Performance" />

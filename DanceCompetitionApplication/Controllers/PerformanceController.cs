@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Diagnostics;
 using System.Web.Script.Serialization;
 using Newtonsoft.Json;
+using DanceCompetitionApplication.Models.ViewModels;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -74,7 +75,14 @@ namespace DanceCompetitionApplication.Controllers
         // GET: Performance/New
         public ActionResult New()
         {
-            return View();
+            // access information all categories in the system to choose from when creating a new performance
+            // GET: api/categorydata/listcategories
+
+            string url = "categorydata/listcategories";
+            HttpResponseMessage response = client.GetAsync(url).Result;
+            IEnumerable<CategoryDto> CategoryOptions = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+
+            return View(CategoryOptions);
         }
 
         // POST: Performance/Create
@@ -104,14 +112,21 @@ namespace DanceCompetitionApplication.Controllers
         // GET: Performance/Edit/5
         public ActionResult Edit(int id)
         {
-            // get the performance information
+            UpdatePerformance ViewModel = new UpdatePerformance();
 
+            // existing performance information
             string url = "performancedata/findperformance/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
-
             PerformanceDto SelectedPerformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
+            ViewModel.SelectedPerformance = SelectedPerformance;
 
-            return View(SelectedPerformance);
+            // all categories in the system to choose from when updating a performance
+            url = "categorydata/listcategories/";
+            response = client.GetAsync(url).Result;
+            IEnumerable<CategoryDto> CategoryOptions = response.Content.ReadAsAsync<IEnumerable<CategoryDto>>().Result;
+            ViewModel.CategoryOptions = CategoryOptions;
+
+            return View(ViewModel);
         }
 
         // POST: Performance/Update/5

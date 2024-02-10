@@ -51,6 +51,38 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         /// <summary>
+        ///     Returns a list of all performances in the system related to a particular category
+        /// </summary>
+        /// <returns>
+        ///     Returns all performances in the database associated with a specific category id including their performance id, performance time, routine name, studio, and category name
+        /// </returns>
+        /// <param name="id"> The category's primary key, category id (as an integer) </param>
+        /// <example>
+        ///     GET: api/PerformanceData/ListPerformancesForCategory
+        /// </example>
+        [HttpGet]
+        public IEnumerable<PerformanceDto> ListPerformancesForCategory(int id)
+        {
+            //select all from performances
+            List<Performance> Performances = db.Performances.Where(p=>p.CategoryId==id).ToList();
+
+            List<PerformanceDto> PerformanceDtos = new List<PerformanceDto>();
+
+            Performances.ForEach(p => PerformanceDtos.Add(new PerformanceDto()
+            {
+                PerformanceId = p.PerformanceId,
+                PerformanceTime = p.PerformanceTime,
+                RoutineName = p.RoutineName,
+                Studio = p.Studio,
+                CategoryId = p.CategoryId,
+                CategoryName = p.Category.CategoryName
+            }
+            ));
+
+            return PerformanceDtos;
+        }
+
+        /// <summary>
         ///     Recieves a performance id and returns the corresponding performance
         /// </summary>
         /// <param name="id"> The performance's primary key, performance id (as an integer) </param>

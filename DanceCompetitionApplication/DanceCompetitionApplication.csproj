@@ -209,6 +209,10 @@
     <Compile Include="Migrations\202402011226283_dancerperformances.designer.cs">
       <DependentUpon>202402011226283_dancerperformances.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202402100241025_performance.cs" />
+    <Compile Include="Migrations\202402100241025_performance.designer.cs">
+      <DependentUpon>202402100241025_performance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -217,6 +221,8 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Performance.cs" />
+    <Compile Include="Models\ViewModels\DetailsCategory.cs" />
+    <Compile Include="Models\ViewModels\UpdatePerformance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -352,6 +358,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202402011226283_dancerperformances.resx">
       <DependentUpon>202402011226283_dancerperformances.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202402100241025_performance.resx">
+      <DependentUpon>202402100241025_performance.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
