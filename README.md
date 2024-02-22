@@ -6,4 +6,5 @@ Minimum Viable Product of the Dance Competition Application.
 - Entity Framework Language Integrated Query (LINQ) to perform Create, Read, Update, and Delete operations
 - Client and server side validation
 - CSS to style user interface
-- Implemented 1-M relationship
+- Implemented 1-M relationship between performances and categories
+- Implemented M-M relationship between dancers and performances
