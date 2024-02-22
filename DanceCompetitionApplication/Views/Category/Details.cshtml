@@ -10,15 +10,15 @@
     <div>
         <h2 class="detailsInfo">@Model.SelectedCategory.CategoryName</h2>
     </div>
-    <div>
-        <h3>Performances:</h3>
-        @foreach(var performance in Model.RelatedPerformances)
-            {
-                <div>
-                    <a href="/Performance/Details/@performance.PerformanceId">@performance.RoutineName</a>
-                </div>
-            }
-    </div>
+</div>
+<div id="relatedPerformances">
+    <h3>Performances</h3>
+    @foreach (var performance in Model.RelatedPerformances)
+    {
+        <div>
+            <a class="item" href="/Performance/Details/@performance.PerformanceId">@performance.RoutineName</a>
+        </div>
+    }
 </div>
 
 <div class="actionBtns">

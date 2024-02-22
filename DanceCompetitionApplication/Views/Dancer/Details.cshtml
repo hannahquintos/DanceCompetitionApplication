@@ -8,16 +8,15 @@
 
 <div class="detailsContainer">
     <h2 class="detailsInfo">@Model.SelectedDancer.FirstName @Model.SelectedDancer.LastName</h2>
-    <p class="detailsInfo">Date of Birth: @Model.SelectedDancer.DateOfBirth</p>
-    
-    <div>
-        <h3>Performances</h3>
-        @foreach(var performance in Model.PerformancesForDancer)
-            {
-                <a href="/Performance/Details/@performance.PerformanceId">@performance.RoutineName</a><br/>
-            }
-    </div>
+    <p class="detailsInfo">Date of Birth: @Model.SelectedDancer.DateOfBirth.ToString("yyyy-MM-dd")</p>
+</div>
 
+<div id="performancesForDancer">
+    <h3>Performances</h3>
+    @foreach(var performance in Model.PerformancesForDancer)
+        {
+            <a class="item" href="/Performance/Details/@performance.PerformanceId">@performance.RoutineName</a><br/>
+        }
 </div>
 
 <div class="actionBtns">

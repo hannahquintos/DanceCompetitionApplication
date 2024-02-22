@@ -10,7 +10,7 @@
 
 <div class="detailsContainer">
     <h2 class="detailsInfo">@Model.FirstName @Model.LastName</h2>
-    <p class="detailsInfo">Date of Birth: @Model.DateOfBirth</p>
+    <p class="detailsInfo">Date of Birth: @Model.DateOfBirth.ToString("yyyy-MM-dd")</p>
 </div>
 
 <form action="/Dancer/Delete/@Model.DancerId" method="POST">
