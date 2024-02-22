@@ -329,7 +329,19 @@ h3{
     width: 145px;
 }
 
-.item{
+.searchBtn {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    background-color: #E3E3E3;
+    border: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
+    width: 100px;
+    margin-left: 5px;
+}
+
+.item {
     text-decoration: none;
     color: black;
 }

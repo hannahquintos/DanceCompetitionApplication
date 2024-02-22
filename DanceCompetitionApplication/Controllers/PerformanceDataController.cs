@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -29,10 +30,19 @@ namespace DanceCompetitionApplication.Controllers
         ///     GET: api/PerformanceData/ListPerformances
         /// </example>
         [HttpGet]
-        public IEnumerable<PerformanceDto> ListPerformances()
+        [Route("api/performancedata/listperformances/{SearchKey?}")]
+        public IEnumerable<PerformanceDto> ListPerformances(string SearchKey = null)
         {
             //select all from performances
             List<Performance> Performances = db.Performances.ToList();
+
+            //if a searchkey is entered
+            if (!string.IsNullOrEmpty(SearchKey))
+            {
+                //select all performances that have routine names that match the search key
+                 Performances = db.Performances.Where
+                    (p => p.RoutineName.Contains(SearchKey)).ToList();
+            }
 
             List<PerformanceDto> PerformanceDtos = new List<PerformanceDto>();
 

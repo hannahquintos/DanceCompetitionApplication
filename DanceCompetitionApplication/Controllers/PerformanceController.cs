@@ -26,14 +26,14 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         // GET: Performance/List
-        public ActionResult List()
+        public ActionResult List(string SearchKey = null)
         {
             // get list of performances in the system through an HTTP request
             // GET {resource}/api/performancedata/listperformances
             // curl https://localhost:44355/api/performancedata/listperformances
 
             // set the url
-            string url = "performancedata/listperformances";
+            string url = "performancedata/listperformances/" + SearchKey;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
 
