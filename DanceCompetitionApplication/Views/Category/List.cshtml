@@ -8,7 +8,7 @@
 
 @foreach (DanceCompetitionApplication.Models.CategoryDto Category in Model)
 {
-    <div><a href="/Category/Details/@Category.CategoryId">@Category.CategoryName</a></div>
+    <div class="itemContainer"><a class="item" href="/Category/Details/@Category.CategoryId">@Category.CategoryName</a></div>
 }
 
 <div class="addBtn" id="addCategoryBtn">

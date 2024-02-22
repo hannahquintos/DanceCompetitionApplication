@@ -11,7 +11,10 @@
 <div class="detailsContainer">
     <p class="detailsInfo">Entry #@Model.PerformanceId</p>
     <h2 class="detailsInfo">@Model.RoutineName</h2>
-    <p class="detailsInfo"><span class="timeBold">@Model.PerformanceTime</span> @Model.CategoryName</p>
+    <div id="timeAndCategory">
+        <p class="detailsInfo" id="timeBold">@Model.PerformanceTime.ToString("h:mm tt")</p>
+        <p class="detailsInfo">@Model.CategoryName</p>
+    </div>
 </div>
 
 <form action="/Performance/Delete/@Model.PerformanceId" method="POST">

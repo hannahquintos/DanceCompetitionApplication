@@ -57,8 +57,12 @@ label{
     border-radius: 5px;
     color: white;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
     border: none;
+}
+
+.submitBtn a:hover{
+    color: #770022;
 }
 
 #addPerformanceSubmit {
@@ -128,6 +132,10 @@ tr:hover{
     border-radius: 5px;
 }
 
+.addBtn a:hover{
+    color: #770022;
+}
+
 .addBtn a, .updateBtn a, .deleteBtn a, #scheduleBtn a{
     color: white;
     text-decoration: none;
@@ -140,8 +148,8 @@ tr:hover{
     font-weight: 500;
 }
 
-.backLink:hover{
-    color: #770022;
+a:hover{
+    color: #E08283;
 }
 
 .detailsInfo{
@@ -178,6 +186,10 @@ tr:hover{
     border-radius: 5px;
 }
 
+.updateBtn a:hover{
+    color: #770022;
+}
+
 .deleteBtn {
     background-color: #770022;
     padding-top: 5px;
@@ -189,13 +201,20 @@ tr:hover{
 }
 
 .confirmDeleteBtn {
-    background-color: #9E4B65;
+    background-color: #770022;
     color: white;
     border: none;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 15px;
+    width: 140px;
+    border-radius: 5px;
+    font-weight: 700;
+}
+
+.confirmDeleteBtn:hover{
+    color: #E08283;
 }
 
 #siteName {
@@ -208,6 +227,14 @@ tr:hover{
 .navbar-brand {
     font-family: "Abril Fatface", serif;
     color: white;
+}
+
+.navbar-brand:hover{
+    color: #E08283
+}
+
+.nav-link:hover {
+    color: #E08283
 }
 
 #upcoming{
@@ -262,4 +289,52 @@ tr:hover{
     padding-right: 15px;
     padding-left: 15px;
     border-radius: 5px;
+}
+
+#scheduleBtn a:hover{
+    color: #E08283;
+}
+
+.formInput p{
+    font-size: 0.9em;
+    margin-bottom: 0;
+}
+
+#dancersInPerformance{
+    margin: 1em 0;
+}
+
+#dancersInPerformance h3{
+    font-weight: 700;
+}
+
+h3{
+    font-size: 1.2em;
+}
+
+#associateBtn {
+    background-color: #E3E3E3;
+    border: none;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
+    width: 145px;
+}
+
+.item{
+    text-decoration: none;
+    color: black;
+}
+
+.xIcon{
+    color: #770022;
+    text-decoration: none;
+}
+
+.itemContainer{
+    margin-bottom: 0.5em;
+}
+
+.itemContainer a{
+    font-size: 1.1em;
 }

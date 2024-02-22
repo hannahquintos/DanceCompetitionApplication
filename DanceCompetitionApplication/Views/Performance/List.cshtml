@@ -18,7 +18,7 @@
     @foreach (DanceCompetitionApplication.Models.PerformanceDto Performance in Model)
     {
         <tr onclick="window.location = '/Performance/Details/@Performance.PerformanceId';">
-            <td>@Performance.PerformanceTime</td>
+            <td>@Performance.PerformanceTime.ToString("MMMM d, yyyy h:mm tt")</td>
             <td>@Performance.PerformanceId</td>
             <td>@Performance.RoutineName</td>
             <td>@Performance.Studio</td>

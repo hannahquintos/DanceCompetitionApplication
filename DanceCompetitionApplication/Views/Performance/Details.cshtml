@@ -11,21 +11,21 @@
     <p class="detailsInfo">Entry #@Model.SelectedPerformance.PerformanceId</p>
     <h2 class="detailsInfo">@Model.SelectedPerformance.RoutineName</h2>
     <div id="timeAndCategory">
-        <p class="detailsInfo" id="timeBold">@Model.SelectedPerformance.PerformanceTime</p>
+        <p class="detailsInfo" id="timeBold">@Model.SelectedPerformance.PerformanceTime.ToString("h:mm tt")</p>
         <p class="detailsInfo">@Model.SelectedPerformance.CategoryName</p>
     </div>
 
-    <div>
+    <div id="dancersInPerformance">
         <h3>Dancers</h3>
         @foreach (var dancer in Model.DancersInPerformance)
         {
-            <a href="/Dancer/Details/@dancer.DancerId">@dancer.FirstName @dancer.LastName</a>
-            <a href="/Performance/Unassociate/@Model.SelectedPerformance.PerformanceId?DancerId=@dancer.DancerId">[x]</a><br />
+            <a class="item" href="/Dancer/Details/@dancer.DancerId">@dancer.FirstName @dancer.LastName</a>
+            <a class="xIcon" href="/Performance/Unassociate/@Model.SelectedPerformance.PerformanceId?DancerId=@dancer.DancerId">[x]</a><br />
         }
     </div>
 
     <div>
-        <h4>Add new dancer to @Model.SelectedPerformance.RoutineName</h4>
+        <h3>Add new dancer to @Model.SelectedPerformance.RoutineName</h3>
         <form action="/Performance/Associate/@Model.SelectedPerformance.PerformanceId" method="POST">
             <select name="DancerId">
                 @foreach (var dancer in @Model.AvailableDancers)
@@ -33,7 +33,7 @@
                     <option value="@dancer.DancerId">@dancer.FirstName @dancer.LastName</option>
                 }
             </select>
-            <input type="submit" value="Associate Dancer" />
+            <input type="submit" value="Associate Dancer" id="associateBtn"/>
         </form>
     </div>
 
