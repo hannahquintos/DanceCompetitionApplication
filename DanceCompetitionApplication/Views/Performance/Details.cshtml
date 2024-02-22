@@ -1,4 +1,4 @@
-﻿@model DanceCompetitionApplication.Models.PerformanceDto
+﻿@model DanceCompetitionApplication.Models.ViewModels.DetailsPerformance
 
 @{
     ViewBag.Title = "Details";
@@ -8,16 +8,42 @@
 <a class="backLink" href="/Performance/List">< All Performances</a>
 
 <div class="detailsContainer">
-    <p class="detailsInfo">Entry #@Model.PerformanceId</p>
-    <h2 class="detailsInfo">@Model.RoutineName</h2>
-    <p class="detailsInfo"><span class="timeBold">@Model.PerformanceTime</span> @Model.CategoryName</p>
+    <p class="detailsInfo">Entry #@Model.SelectedPerformance.PerformanceId</p>
+    <h2 class="detailsInfo">@Model.SelectedPerformance.RoutineName</h2>
+    <div id="timeAndCategory">
+        <p class="detailsInfo" id="timeBold">@Model.SelectedPerformance.PerformanceTime</p>
+        <p class="detailsInfo">@Model.SelectedPerformance.CategoryName</p>
+    </div>
+
+    <div>
+        <h3>Dancers</h3>
+        @foreach (var dancer in Model.DancersInPerformance)
+        {
+            <a href="/Dancer/Details/@dancer.DancerId">@dancer.FirstName @dancer.LastName</a>
+            <a href="/Performance/Unassociate/@Model.SelectedPerformance.PerformanceId?DancerId=@dancer.DancerId">[x]</a><br />
+        }
+    </div>
+
+    <div>
+        <h4>Add new dancer to @Model.SelectedPerformance.RoutineName</h4>
+        <form action="/Performance/Associate/@Model.SelectedPerformance.PerformanceId" method="POST">
+            <select name="DancerId">
+                @foreach (var dancer in @Model.AvailableDancers)
+                {
+                    <option value="@dancer.DancerId">@dancer.FirstName @dancer.LastName</option>
+                }
+            </select>
+            <input type="submit" value="Associate Dancer" />
+        </form>
+    </div>
+
 </div>
 
 <div class="actionBtns">
     <div class="updateBtn">
-        <a href="/Performance/Edit/@Model.PerformanceId">Update</a>
+        <a href="/Performance/Edit/@Model.SelectedPerformance.PerformanceId">Update</a>
     </div>
     <div class="deleteBtn">
-        <a href="/Performance/DeleteConfirm/@Model.PerformanceId">Delete</a>
+        <a href="/Performance/DeleteConfirm/@Model.SelectedPerformance.PerformanceId">Delete</a>
     </div>
 </div>

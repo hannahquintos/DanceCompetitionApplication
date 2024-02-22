@@ -83,6 +83,103 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         /// <summary>
+        ///     Returns a list of all performances in the system related to a particular dancer
+        /// </summary>
+        /// <returns>
+        ///     Returns all performances in the database associated with a specific dancer id including their performance id, performance time, routine name, studio, and category name
+        /// </returns>
+        /// <param name="id"> The dancer's primary key, dancer id (as an integer) </param>
+        /// <example>
+        ///     GET: api/PerformanceData/ListPerformancesForDancer/1
+        /// </example>
+        [HttpGet]
+        public IEnumerable<PerformanceDto> ListPerformancesForDancer(int id)
+        {
+            //select all performances that have dancers which match with the id
+            List<Performance> Performances = db.Performances.Where(
+                p=>p.DancerPerformances.Any(
+                    d=>d.DancerId==id
+                )).ToList();
+
+            List<PerformanceDto> PerformanceDtos = new List<PerformanceDto>();
+
+            Performances.ForEach(p => PerformanceDtos.Add(new PerformanceDto()
+            {
+                PerformanceId = p.PerformanceId,
+                PerformanceTime = p.PerformanceTime,
+                RoutineName = p.RoutineName,
+                Studio = p.Studio,
+                CategoryId = p.CategoryId,
+                CategoryName = p.Category.CategoryName
+            }
+            ));
+
+            return PerformanceDtos;
+        }
+
+        /// <summary>
+        ///     Associate a particular dancer with a particular performance
+        /// </summary>
+        /// <param name="performanceid"> The performance's primary key, performance id (as an integer) </param>
+        /// <param name="dancerid"> The dancer's primary key, dancer id (as an integer) </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///         or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        [HttpPost]
+        [Route("api/performancedata/AddDancerToPerformance/{performanceid}/{dancerid}")]
+        public IHttpActionResult AddDancerToPerformance(int performanceid, int dancerid)
+        {
+            Performance SelectedPerformance = db.Performances.Include
+                (p=>p.DancerPerformances).Where
+                (p=>p.PerformanceId==performanceid).FirstOrDefault();
+
+            DancerPerformance SelectedDancer = db.DancerPerforamances.Find(dancerid);
+
+            if(SelectedPerformance==null || SelectedDancer==null)
+            {
+                return NotFound();
+            }
+
+            SelectedPerformance.DancerPerformances.Add(SelectedDancer);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        /// <summary>
+        ///     Remove an association between a particular dancer with a particular performance
+        /// </summary>
+        /// <param name="performanceid"> The performance's primary key, performance id (as an integer) </param>
+        /// <param name="dancerid"> The dancer's primary key, dancer id (as an integer) </param>
+        /// <returns>
+        ///     HEADER: 200 (OK)
+        ///         or
+        ///     HEADER: 404 (NOT FOUND)
+        /// </returns>
+        [HttpPost]
+        [Route("api/performancedata/RemoveDancerFromPerformance/{performanceid}/{dancerid}")]
+        public IHttpActionResult RemoveDancerFromPerformance(int performanceid, int dancerid)
+        {
+            Performance SelectedPerformance = db.Performances.Include
+                (p => p.DancerPerformances).Where
+                (p => p.PerformanceId == performanceid).FirstOrDefault();
+
+            DancerPerformance SelectedDancer = db.DancerPerforamances.Find(dancerid);
+
+            if (SelectedPerformance == null || SelectedDancer == null)
+            {
+                return NotFound();
+            }
+
+            SelectedPerformance.DancerPerformances.Remove(SelectedDancer);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
+        /// <summary>
         ///     Recieves a performance id and returns the corresponding performance
         /// </summary>
         /// <param name="id"> The performance's primary key, performance id (as an integer) </param>
@@ -116,7 +213,7 @@ namespace DanceCompetitionApplication.Controllers
             {
                 return NotFound();
             }
-            Debug.WriteLine("performance time: " + Performance.PerformanceTime);
+            /*Debug.WriteLine("performance time: " + Performance.PerformanceTime);*/
             return Ok(PerformanceDto);
         }
 

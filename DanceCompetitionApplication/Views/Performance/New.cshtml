@@ -70,29 +70,29 @@
 <h2>Create Performance</h2>
 
 <form action="/Performance/Create" method="POST" onsubmit="return validatePerformanceForm()">
-    <div>
+    <div class="formInput">
         <p id="PerformanceIdError" style="display:none; color:red;">*Please enter a performance id</p>
-        <label>Performance Id:</label>
+        <label>Performance Id</label>
         <input type="number" name="PerformanceId" id="PerformanceId"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="RoutineNameError" style="display:none; color:red;">*Please enter a routine name</p>
-        <label>Routine Name:</label>
+        <label>Routine Name</label>
         <input type="text" name="RoutineName" id="RoutineName"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="PerformanceTimeError" style="display:none; color:red;">*Please enter a performance time</p>
-        <label>Performance Time:</label>
+        <label>Performance Time</label>
         <input type="datetime-local" name="PerformanceTime" id="PerformanceTime"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="StudioError" style="display:none; color:red;">*Please enter a studio</p>
-        <label>Studio:</label>
+        <label>Studio</label>
         <input type="text" name="Studio" id="Studio"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category</p>
-        <label>Category:</label>
+        <label>Category</label>
         <!-- <input type="number" name="CategoryId" id="CategoryId"/>* -->
         <!-- select category from list of categories in the system -->
         <select name="CategoryId" id="CategoryId">
@@ -104,6 +104,6 @@
         </select>
     </div>
     <div>
-        <input type="submit" value="Add Performance" />
+        <input class="submitBtn" id="addPerformanceSubmit" type="submit" value="Add Performance" />
     </div>
 </form>

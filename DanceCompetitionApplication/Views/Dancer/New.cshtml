@@ -59,28 +59,28 @@
 <h2>Create Dancer</h2>
 
 <form action="/Dancer/Create" method="POST" onsubmit="return validateDancerForm()">
-    <div>
+    <div class="formInput">
         <p id="DancerIdError" style="display:none; color:red;">*Please enter a dancer id</p>
-        <label>Dancer Id:</label>
+        <label>Dancer Id</label>
         <input type="number" name="DancerId" id="DancerId"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="FirstNameError" style="display:none; color:red;">*Please enter a first name</p>
-        <label>First Name:</label>
+        <label>First Name</label>
         <input type="text" name="FirstName" id="FirstName"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="LastNameError" style="display:none; color:red;">*Please enter a last name</p>
-        <label>Last Name:</label>
+        <label>Last Name</label>
         <input type="text" name="LastName" id="LastName"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="DateOfBirthError" style="display:none; color:red;">*Please enter a date of birth</p>
-        <label>Date of Birth:</label>
+        <label>Date of Birth</label>
         <input type="date" name="DateOfBirth" id="DateOfBirth"/>
     </div>
     <div>
-        <input type="submit" value="Add Dancer" />
+        <input class="submitBtn" id="addDancerSubmit" type="submit" value="Add Dancer" />
     </div>
 </form>
 

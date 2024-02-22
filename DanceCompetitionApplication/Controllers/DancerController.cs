@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using DanceCompetitionApplication.Models.ViewModels;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -50,6 +51,8 @@ namespace DanceCompetitionApplication.Controllers
         // GET: Dancer/Details/5
         public ActionResult Details(int id)
         {
+            DetailsDancer ViewModel = new DetailsDancer();
+
             // get one dancer in the system through an HTTP request
             // GET {resource}/api/dancerdata/finddancer/{id}
             // curl https://localhost:44355/api/dancerdata/finddancer/{id}
@@ -61,9 +64,17 @@ namespace DanceCompetitionApplication.Controllers
 
             DancerDto SelectedDancer = response.Content.ReadAsAsync<DancerDto>().Result;
 
+            ViewModel.SelectedDancer = SelectedDancer;
+
+            //show all performances associated with this dancer
+            url = "performancedata/listperformancesfordancer/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<PerformanceDto> PerformancesForDancer = response.Content.ReadAsAsync<IEnumerable<PerformanceDto>>().Result;
+
+            ViewModel.PerformancesForDancer = PerformancesForDancer;
 
             //Views/Dancer/List.cshtml
-            return View(SelectedDancer);
+            return View(ViewModel);
         }
 
         public ActionResult Error()

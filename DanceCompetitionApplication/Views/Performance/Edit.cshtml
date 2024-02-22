@@ -64,24 +64,24 @@
 <form action="/Performance/Update/@Model.SelectedPerformance.PerformanceId" method="POST" onsubmit="return validatePerformanceForm()">
     <!-- hidden input to send PerformanceId as part of POST information -->
     <input type="text" style="display:none;" name="PerformanceId" value="@Model.SelectedPerformance.PerformanceId" />
-    <div>
+    <div class="formInput">
         <p id="RoutineNameError" style="display:none; color:red;">*Please enter a routine name</p>
-        <label>Routine Name:</label>
+        <label>Routine Name</label>
         <input type="text" name="RoutineName" value="@Model.SelectedPerformance.RoutineName" id="RoutineName"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="PerformanceTimeError" style="display:none; color:red;">*Please enter a performance time</p>
-        <label>Performance Time:</label>
+        <label>Performance Time</label>
         <input type="datetime-local" name="PerformanceTime" value="@Model.SelectedPerformance.PerformanceTime.ToString("yyyy-MM-ddTHH:mm:ss")" id="PerformanceTime"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="StudioError" style="display:none; color:red;">*Please enter a studio</p>
-        <label>Studio:</label>
+        <label>Studio</label>
         <input type="text" name="Studio" value="@Model.SelectedPerformance.Studio" id="Studio"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="CategoryIdError" style="display:none; color:red;">*Please enter a category id</p>
-        <label>Category (Id):</label>
+        <label>Category</label>
         <!-- <input type="number" name="CategoryId" value="@Model.SelectedPerformance.CategoryId" id="CategoryId"/> -->
         <!-- select category from list of categories in the system -->
         <select name="CategoryId" id="CategoryId">
@@ -92,6 +92,6 @@
         </select>
     </div>
     <div>
-        <input type="submit" value="Update" />
+        <input class="submitBtn" type="submit" value="Update" />
     </div>
 </form>

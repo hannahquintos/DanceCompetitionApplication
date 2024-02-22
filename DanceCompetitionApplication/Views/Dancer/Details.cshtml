@@ -1,4 +1,4 @@
-﻿@model DanceCompetitionApplication.Models.DancerDto
+﻿@model DanceCompetitionApplication.Models.ViewModels.DetailsDancer
 
 @{
     ViewBag.Title = "Details";
@@ -7,15 +7,24 @@
 <a class="backLink" href="/Dancer/List">< All Dancers</a>
 
 <div class="detailsContainer">
-    <h2 class="detailsInfo">@Model.FirstName @Model.LastName</h2>
-    <p class="detailsInfo">Date of Birth: @Model.DateOfBirth</p>
+    <h2 class="detailsInfo">@Model.SelectedDancer.FirstName @Model.SelectedDancer.LastName</h2>
+    <p class="detailsInfo">Date of Birth: @Model.SelectedDancer.DateOfBirth</p>
+    
+    <div>
+        <h3>Performances</h3>
+        @foreach(var performance in Model.PerformancesForDancer)
+            {
+                <a href="/Performance/Details/@performance.PerformanceId">@performance.RoutineName</a><br/>
+            }
+    </div>
+
 </div>
 
 <div class="actionBtns">
     <div class="updateBtn">
-        <a href="/Dancer/Edit/@Model.DancerId">Update</a>
+        <a href="/Dancer/Edit/@Model.SelectedDancer.DancerId">Update</a>
     </div>
     <div class="deleteBtn">
-        <a href="/Dancer/DeleteConfirm/@Model.DancerId">Delete</a>
+        <a href="/Dancer/DeleteConfirm/@Model.SelectedDancer.DancerId">Delete</a>
     </div>
 </div>

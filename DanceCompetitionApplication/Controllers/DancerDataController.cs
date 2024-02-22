@@ -48,6 +48,72 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         /// <summary>
+        ///     Returns a list of all dancers in the system related to a particular performance
+        /// </summary>
+        /// <returns>
+        ///     Returns all dancers in the database related to a particular performance id including their dancer id, first name, last name, and date of birth
+        /// </returns>
+        /// <param name="id"> The performances's primary key, performance id (as an integer) </param>
+        /// <example>
+        ///     GET: api/DancerData/ListDancersForPerformance/2
+        /// </example>
+        [HttpGet]
+        public IEnumerable<DancerDto> ListDancersForPerformance(int id)
+        {
+            //select all from dancers
+            List<Dancer> Dancers = db.Dancers.Where(
+                d=>d.DancerPerformances.Any(
+                    p=>p.PerformanceId==id)
+                ).ToList();
+
+            List<DancerDto> DancerDtos = new List<DancerDto>();
+
+            Dancers.ForEach(d => DancerDtos.Add(new DancerDto()
+            {
+                DancerId = d.DancerId,
+                FirstName = d.FirstName,
+                LastName = d.LastName,
+                DateOfBirth = d.DateOfBirth
+            }
+            ));
+
+            return DancerDtos;
+        }
+
+        /// <summary>
+        ///     Returns a list of all dancers in the system not related to a particular performance
+        /// </summary>
+        /// <returns>
+        ///     Returns all dancers in the database not related to a particular performance id including their dancer id, first name, last name, and date of birth
+        /// </returns>
+        /// <param name="id"> The performances's primary key, performance id (as an integer) </param>
+        /// <example>
+        ///     GET: api/DancerData/ListDancersNotInPerformance/2
+        /// </example>
+        [HttpGet]
+        public IEnumerable<DancerDto> ListDancersNotInPerformance(int id)
+        {
+            //select all from dancers
+            List<Dancer> Dancers = db.Dancers.Where(
+                d => !d.DancerPerformances.Any(
+                    p => p.PerformanceId == id)
+                ).ToList();
+
+            List<DancerDto> DancerDtos = new List<DancerDto>();
+
+            Dancers.ForEach(d => DancerDtos.Add(new DancerDto()
+            {
+                DancerId = d.DancerId,
+                FirstName = d.FirstName,
+                LastName = d.LastName,
+                DateOfBirth = d.DateOfBirth
+            }
+            ));
+
+            return DancerDtos;
+        }
+
+        /// <summary>
         ///     Recieves a dancer id and returns the corresponding dancer
         /// </summary>
         /// <param name="id"> The dancer's primary key, dancer id (as an integer) </param>

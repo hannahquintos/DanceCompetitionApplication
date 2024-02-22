@@ -27,6 +27,8 @@ namespace DanceCompetitionApplication.Models
         public int CategoryId { get; set; }
 
         public virtual Category Category { get; set; }
+
+        public ICollection<DancerPerformance> DancerPerformances { get; set; }
     }
 
     public class PerformanceDto

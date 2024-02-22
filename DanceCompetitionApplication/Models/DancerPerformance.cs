@@ -20,13 +20,13 @@ namespace DanceCompetitionApplication.Models
         //foreign key to dancer entity
         // 1 to many relationship
         [ForeignKey("Dancer")]
-        public int DancerId { get; set; }
+        public int? DancerId { get; set; }
         public virtual Dancer Dancer { get; set; }
 
         //foreign key to performance entity
         // 1 to many relationship
         [ForeignKey("Performance")]
-        public int PerformanceId { get; set; }
+        public int? PerformanceId { get; set; }
         public virtual Performance Performance { get; set; }
     }
 }

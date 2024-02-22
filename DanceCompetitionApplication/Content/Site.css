@@ -1,8 +1,31 @@
-﻿/* Set padding to keep content from hitting the edges */
+﻿@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Gudea:wght@400;700&display=swap');
+
+/* Set padding to keep content from hitting the edges */
 .body-content {
-    margin-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    margin-top: 30px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+h1, h2{
+    font-weight: 700;
+}
+
+body {
+    font-family: "Gudea", sans-serif;
+/*    background-color: #F6EEE8;
+*/}
+
+p {
+    font-size: 1.2em
+}
+
+nav{
+    background-color: #770022;
+}
+
+.nav-link{
+    color: white;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -16,12 +39,49 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    width: 280px;
+    margin-bottom: 1em;
 }
 
-table{
+label{
+    font-weight: 700;
+}
+
+.submitBtn {
+    width: 80px;
+    background-color: #E08283;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+}
+
+#addPerformanceSubmit {
+    width: 160px;
+}
+
+#addDancerSubmit{
+    width: 110px;
+}
+
+#addCategorySubmit{
+    width: 125px;
+}
+
+.formInput {
+    display: flex;
+    flex-direction: column;
+}
+
+table {
     margin-top: 15px;
     margin-bottom: 15px;
+    background-color: white;
 }
 
 td, th {
@@ -46,28 +106,29 @@ tr:hover{
 }
 
 #addPerformanceBtn {
-    width: 180px;
+    width: 165px;
 }
 
 #addCategoryBtn {
     margin-top: 10px;
-    width: 150px;
+    width: 135px;
 }
 
 #addDancerBtn {
     margin-top: 10px;
-    width: 140px;
+    width: 125px;
 }
 
 .addBtn {
-    background-color: #97B6D0;
+    background-color: #E08283;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 15px;
+    border-radius: 5px;
 }
 
-.addBtn a, .updateBtn a, .deleteBtn a{
+.addBtn a, .updateBtn a, .deleteBtn a, #scheduleBtn a{
     color: white;
     text-decoration: none;
     font-weight: 600;
@@ -77,6 +138,10 @@ tr:hover{
     color: black;
     text-decoration: none;
     font-weight: 500;
+}
+
+.backLink:hover{
+    color: #770022;
 }
 
 .detailsInfo{
@@ -89,31 +154,38 @@ tr:hover{
     margin-bottom: 20px;
 }
 
-.timeBold{
-    font-weight: 500;
+#timeBold{
+    font-weight: 700;
 }
 
-.actionBtns{
+#timeAndCategory{
+    display: flex;
+    gap: 0.75em;
+}
+
+.actionBtns {
     display: flex;
     gap: 10px;
 }
 
-.updateBtn{
-    background-color: #97B6D0;
+.updateBtn {
+    background-color: #E08283;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 15px;
     width: 80px;
+    border-radius: 5px;
 }
 
-.deleteBtn{
-    background-color: #9E4B65;
+.deleteBtn {
+    background-color: #770022;
     padding-top: 5px;
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 15px;
-    width: 80px;
+    width: 75px;
+    border-radius: 5px;
 }
 
 .confirmDeleteBtn {
@@ -124,4 +196,70 @@ tr:hover{
     padding-bottom: 5px;
     padding-right: 15px;
     padding-left: 15px;
+}
+
+#siteName {
+    font-family: "Abril Fatface", serif;
+    font-size: 3.5em;
+    letter-spacing: 1.5px;
+    color: #770022;
+}
+
+.navbar-brand {
+    font-family: "Abril Fatface", serif;
+    color: white;
+}
+
+#upcoming{
+    width: 350px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#competitionDetails p{
+    margin-bottom: 0;
+}
+
+#city{
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+#date{
+    font-size: 1.5em;
+}
+
+#splashPage {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    text-align: center;
+    align-items: center;
+}
+
+#homeContent{
+    display: flex;
+    gap: 1em;
+}
+
+#homeImage{
+    height: 300px;
+}
+
+#scheduleBtn {
+    background-color: #770022;
+    width: 140px;
+    border: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    border-radius: 5px;
 }

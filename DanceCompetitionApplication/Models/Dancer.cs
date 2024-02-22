@@ -20,6 +20,8 @@ namespace DanceCompetitionApplication.Models
         public string LastName { get; set; }
 
         public DateTime DateOfBirth { get; set; }
+
+        public ICollection<DancerPerformance> DancerPerformances { get; set; }
     }
 
     public class DancerDto

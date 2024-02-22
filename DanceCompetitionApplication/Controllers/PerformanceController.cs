@@ -51,6 +51,8 @@ namespace DanceCompetitionApplication.Controllers
         // GET: Performance/Details/5
         public ActionResult Details(int id)
         {
+            DetailsPerformance ViewModel = new DetailsPerformance();
+
             // get one performance in the system through an HTTP request
             // GET {resource}/api/performancedata/findperformance/{id}
             // curl https://localhost:44355/api/performancedata/findperformance/{id}
@@ -62,9 +64,57 @@ namespace DanceCompetitionApplication.Controllers
 
             PerformanceDto SelectedPerformance = response.Content.ReadAsAsync<PerformanceDto>().Result;
 
+            ViewModel.SelectedPerformance = SelectedPerformance;
+
+            // show associated dancers with this performance
+            url = "dancerdata/listdancersforperformance/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<DancerDto> DancersInPerformance = response.Content.ReadAsAsync<IEnumerable<DancerDto>>().Result;
+
+            ViewModel.DancersInPerformance = DancersInPerformance;
+
+            url = "dancerdata/listdancersnotinperformance/" + id;
+            response = client.GetAsync(url).Result;
+            IEnumerable<DancerDto> AvailableDancers = response.Content.ReadAsAsync<IEnumerable<DancerDto>>().Result;
+
+            ViewModel.AvailableDancers = AvailableDancers;
 
             //Views/Performance/List.cshtml
-            return View(SelectedPerformance);
+            return View(ViewModel);
+        }
+
+        //POST: Performance/Associate/{performanceid}
+        [HttpPost]
+        public ActionResult Associate(int id, int DancerId)
+        {
+            /*Debug.WriteLine("Attempting to associate performance: " + id + " with dancer: " + DancerId);*/
+
+            // call api to add dancer to performance
+            string url = "performancedata/adddancertoperformance/" + id + "/" + DancerId;
+
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
+        }
+
+        //GET: Performance/UnAssociate/{id}?DancerId={dancerid}
+        [HttpGet]
+        public ActionResult UnAssociate(int id, int DancerId)
+        {
+            /*Debug.WriteLine("Attempting to unassociate performance: " + id + " with dancer: " + DancerId);*/
+
+            // call api to add dancer to performance
+            string url = "performancedata/removedancerfromperformance/" + id + "/" + DancerId;
+
+            HttpContent content = new StringContent("");
+            content.Headers.ContentType.MediaType = "application/json";
+
+            HttpResponseMessage response = client.PostAsync(url, content).Result;
+
+            return RedirectToAction("Details/" + id);
         }
 
         public ActionResult Error()

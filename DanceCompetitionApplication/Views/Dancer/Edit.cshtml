@@ -54,22 +54,22 @@
 <form action="/Dancer/Update/@Model.DancerId" method="POST" onsubmit="return validateDancerForm()">
     <!-- hidden input to send DancerId as part of POST information -->
     <input type="text" style="display:none;" name="DancerId" value="@Model.DancerId" />
-    <div>
+    <div class="formInput">
         <p id="FirstNameError" style="display:none; color:red;">*Please enter a first name</p>
-        <label>First Name:</label>
+        <label>First Name</label>
         <input type="text" name="FirstName" value="@Model.FirstName" id="FirstName"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="LastNameError" style="display:none; color:red;">*Please enter a last name</p>
-        <label>Last Name:</label>
+        <label>Last Name</label>
         <input type="text" name="LastName" value="@Model.LastName" id="LastName"/>
     </div>
-    <div>
+    <div class="formInput">
         <p id="DateOfBirthError" style="display:none; color:red;">*Please enter a date of birth</p>
-        <label>Date of Birth:</label>
+        <label>Date of Birth</label>
         <input type="date" name="DateOfBirth" value="@Model.DateOfBirth.ToString("yyyy-MM-dd")" id="DateOfBirth"/>
     </div>
     <div>
-        <input type="submit" value="Update" />
+        <input class="submitBtn" type="submit" value="Update" />
     </div>
 </form>
