@@ -25,14 +25,14 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         // GET: Category/List
-        public ActionResult List()
+        public ActionResult List(string SearchKey = null)
         {
             // get list of categories in the system through an HTTP request
             // GET {resource}/api/categorydata/listcategories
             // curl https://localhost:44355/api/categorydata/listcategories
 
             // set the url
-            string url = "categorydata/listcategories";
+            string url = "categorydata/listcategories/" + SearchKey;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
 

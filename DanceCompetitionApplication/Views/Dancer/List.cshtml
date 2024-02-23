@@ -6,6 +6,12 @@
 
 <h2>Dancers</h2>
 
+<!--search bar-->
+<form action="/Dancer/List" method="GET">
+    <input type="text" name="SearchKey" />
+    <input class="searchBtn" type="submit" value="Search" />
+</form>
+
 @foreach (DanceCompetitionApplication.Models.DancerDto Dancer in Model)
 {
     <div class="itemContainer"><a class="item" href="/Dancer/Details/@Dancer.DancerId">@Dancer.FirstName @Dancer.LastName</a></div>

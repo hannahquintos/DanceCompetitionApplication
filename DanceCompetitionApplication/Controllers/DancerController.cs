@@ -26,14 +26,14 @@ namespace DanceCompetitionApplication.Controllers
         }
 
         // GET: Dancer/List
-        public ActionResult List()
+        public ActionResult List(string SearchKey = null)
         {
             // get list of dancers in the system through an HTTP request
             // GET {resource}/api/dancerdata/listdancers
             // curl https://localhost:44355/api/dancerdata/listdancers
 
             // set the url
-            string url = "dancerdata/listdancers";
+            string url = "dancerdata/listdancers/" + SearchKey;
 
             HttpResponseMessage response = client.GetAsync(url).Result;
 

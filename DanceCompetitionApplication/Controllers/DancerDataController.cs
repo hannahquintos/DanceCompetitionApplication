@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using DanceCompetitionApplication.Models;
 using System.Diagnostics;
+using DanceCompetitionApplication.Migrations;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -19,19 +20,29 @@ namespace DanceCompetitionApplication.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        ///     Returns a list of all dancers in the system
+        ///     Returns a list of all dancers in the system. If there is a search input, returns a list of dancers related to the search.
         /// </summary>
+        /// <param name="SearchKey"> An optional parameter (null if not provided) of the user's search input (as a string) </param>
         /// <returns>
         ///     Returns all dancers in the database including their dancer id, first name, last name, and date of birth
         /// </returns>
         /// <example>
-        ///     GET: api/DancerData/ListDancers
+        ///     GET: api/DancerData/ListDancers/carneiro
         /// </example>
         [HttpGet]
-        public IEnumerable<DancerDto> ListDancers()
+        [Route("api/dancerdata/listdancers/{SearchKey?}")]
+        public IEnumerable<DancerDto> ListDancers(string SearchKey = null)
         {
             //select all from dancers
             List<Dancer> Dancers = db.Dancers.ToList();
+
+            //if a searchkey is entered
+            if (!string.IsNullOrEmpty(SearchKey))
+            {
+                //select all dancers that have first or last names that match the search key
+                Dancers = db.Dancers.Where
+                   (d => d.FirstName.Contains(SearchKey) || d.LastName.Contains(SearchKey)).ToList();
+            }
 
             List<DancerDto> DancerDtos = new List<DancerDto>();
 

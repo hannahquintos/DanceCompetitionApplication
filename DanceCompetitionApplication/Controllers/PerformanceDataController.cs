@@ -21,13 +21,14 @@ namespace DanceCompetitionApplication.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        ///     Returns a list of all performances in the system
+        ///     Returns a list of all performances in the system. If there is a search input, returns a list of performances related to the search.
         /// </summary>
+        /// <param name="SearchKey"> An optional parameter (null if not provided) of the user's search input (as a string) </param>
         /// <returns>
         ///     Returns all performances in the database including their performance id, performance time, routine name, studio, and category name
         /// </returns>
         /// <example>
-        ///     GET: api/PerformanceData/ListPerformances
+        ///     GET: api/PerformanceData/ListPerformances/love
         /// </example>
         [HttpGet]
         [Route("api/performancedata/listperformances/{SearchKey?}")]

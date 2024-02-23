@@ -6,6 +6,12 @@
 
 <h2>Categories</h2>
 
+<!--search bar-->
+<form action="/Category/List" method="GET">
+    <input type="text" name="SearchKey" />
+    <input class="searchBtn" type="submit" value="Search" />
+</form>
+
 @foreach (DanceCompetitionApplication.Models.CategoryDto Category in Model)
 {
     <div class="itemContainer"><a class="item" href="/Category/Details/@Category.CategoryId">@Category.CategoryName</a></div>

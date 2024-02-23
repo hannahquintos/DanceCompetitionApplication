@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using DanceCompetitionApplication.Models;
 using System.Diagnostics;
+using DanceCompetitionApplication.Migrations;
 
 namespace DanceCompetitionApplication.Controllers
 {
@@ -19,19 +20,29 @@ namespace DanceCompetitionApplication.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        ///     Returns a list of all categories in the system
+        ///     Returns a list of all categories in the system. If there is a search input, returns a list of performances related to the search.
         /// </summary>
+        /// <param name="SearchKey"> An optional parameter (null if not provided) of the user's search input (as a string) </param>
         /// <returns>
         ///     Returns all categories in the database including their category id and category name
         /// </returns>
         /// <example>
-        ///     GET: api/CategoryData/ListCategories
+        ///     GET: api/CategoryData/ListCategories/lyrical
         /// </example>
         [HttpGet]
-        public IEnumerable<CategoryDto> ListCategories()
+        [Route("api/categorydata/listcategories/{SearchKey?}")]
+        public IEnumerable<CategoryDto> ListCategories(string SearchKey = null)
         {
             //select all from categories
             List<Category> Categories = db.Categories.ToList();
+
+            //if a searchkey is entered
+            if (!string.IsNullOrEmpty(SearchKey))
+            {
+                //select all performances that have routine names that match the search key
+                Categories = db.Categories.Where
+                   (c => c.CategoryName.Contains(SearchKey)).ToList();
+            }
 
             List<CategoryDto> CategoryDtos = new List<CategoryDto>();
 
