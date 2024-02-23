@@ -41,7 +41,7 @@ namespace DanceCompetitionApplication.Controllers
             {
                 //select all dancers that have first or last names that match the search key
                 Dancers = db.Dancers.Where
-                   (d => d.FirstName.Contains(SearchKey) || d.LastName.Contains(SearchKey)).ToList();
+                   (d => d.FirstName.Contains(SearchKey) || d.LastName.Contains(SearchKey) || (d.FirstName + " " + d.LastName).Contains(SearchKey)).ToList();
             }
 
             List<DancerDto> DancerDtos = new List<DancerDto>();
